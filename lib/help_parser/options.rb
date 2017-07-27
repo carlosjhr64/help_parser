@@ -23,5 +23,18 @@ module HelpParser
     def [](k)
       @hash[k]
     end
+
+    def method_missing(mthd, *args, &block)
+      super if block or args.length > 0
+      m = mthd.to_s
+      case m[-1]
+      when '?'
+        @hash.key? m[0..-2]
+      when '!'
+        super
+      else
+        @hash[m]
+      end
+    end
   end
 end
