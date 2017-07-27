@@ -46,5 +46,6 @@ lib/help_parser/parseu.rb
 lib/help_parser/validations.rb
   )
 
+  s.requirements << 'ruby: ruby 2.4.1p111 (2017-03-22 revision 58053) [x86_64-linux]'
 
 end

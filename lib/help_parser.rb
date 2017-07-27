@@ -32,3 +32,6 @@ module HelpParser
     exception.exit
   end
 end
+
+# Requires:
+#`ruby`
