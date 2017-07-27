@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+require "json"
+require_relative "../lib/help_parser"
+
+VERSION = "1.2.3"
+OPTIONS = HelpParser[VERSION]
+puts OPTIONS._hash.to_json

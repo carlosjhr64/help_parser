@@ -1,0 +1,17 @@
+#!/usr/bin/env ruby
+require "json"
+require_relative "../lib/help_parser"
+
+HELP = <<-HELP
+Options:
+  --float=FLOAT
+  --number=NUMBER 123
+  -n --name=NAME Guy
+Types:
+  FLOAT  /^\\d+\\.\\d+$/
+  NUMBER /^\\d+$/
+  NAME   /^[A-Z][a-z]+$/
+HELP
+
+OPTIONS = HelpParser[nil, HELP]
+puts OPTIONS._hash.to_json

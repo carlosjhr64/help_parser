@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+require "json"
+require_relative "../lib/help_parser"
+
+HELP = <<-HELP
+### The Help ###
+HELP
+
+OPTIONS = HelpParser[nil, HELP]
+puts OPTIONS._hash.to_json
