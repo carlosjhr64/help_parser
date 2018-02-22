@@ -1,9 +1,10 @@
 == TODO
 
-See Fishshell's argparse for ideas.
+== Done
+
+    Exclusive keys
 
 == File List
 
 TODO:	Symmetry demands this,
 	lib/help_parser/validations.rb, #31
-

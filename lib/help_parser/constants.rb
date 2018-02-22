@@ -1,6 +1,7 @@
 module HelpParser
   USAGE = 'usage'
   TYPES = 'types'
+  EXCLUSIVE = 'exclusive'
 
   # usage
   FLAG       = /^[-][-]?(?<k>\w+)$/
@@ -19,6 +20,9 @@ module HelpParser
   # spec W+ /~/
   TYPE_DEF = /^(?<t>[A-Z]+),?\s+\/(?<r>\S+)\/$/
 
+  # spec w+( w+)*
+  X_DEF = /^\w+( +\w+)+$/
+
   CSV = /,?\s+/
 
   # exit codes
@@ -26,20 +30,21 @@ module HelpParser
   EX_SOFTWARE = 70
   EX_CONFIG   = 78
 
-  # error messages
-  MSG = lambda{|msg,*keys| "#{msg}:  #{keys.join(' ')}"}
-
+  # error messages, partials:
   NO_MATCH            = 'Software Error: NoMatch was not caught by HelpParser.'
   DUP_KEY             = 'Duplicate key'
   DUP_WORD            = 'Duplicate word'
   DUP_FLAG            = 'Duplicate flag'
+  UNSEEN_FLAG         = 'Undefined flag'
   INCONSISTENT        = 'Inconsistent use of variable'
   UNEXPECTED          = 'Unexpected string in help text'
   BAD_REGEX           = 'Bad regex'
   REDUNDANT           = 'Redundant'
+  EXCLUSIVE_KEYS      = 'Exclusive keys'
   UNBALANCED          = 'Unbalanced brackets'
   UNRECOGNIZED_TOKEN  = 'Unrecognized usage token'
   UNRECOGNIZED_TYPE   = 'Unrecognized type spec'
+  UNRECOGNIZED_X      = 'Unrecognized exclusive spec'
   UNRECOGNIZED_OPTION = 'Unrecognized option spec'
   UNDEFINED_SECTION   = 'Section not defined'
   MISSING_CASES       = 'Missing cases'
@@ -52,7 +57,12 @@ module HelpParser
   NOT_FLOATS          = 'Not all Floats'
   NOT_INTEGER         = 'Not an Integer'
   NOT_INTEGERS        = 'Not all Integers'
-
+  # error messages, full:
   MATCH_USAGE         = 'Please match usage.'
   EXTRANEOUS_SPACES   = 'Extraneous spaces in help.'
+
+  # lambda utilities
+  MSG = lambda{|msg,*keys| "#{msg}:  #{keys.join(' ')}"}
+  F2K = lambda{|f| f[1]=='-' ? f[2..((f.index('=')||0)-1)] : f[1]}
+  RESERVED = lambda{|k| [USAGE,TYPES,EXCLUSIVE].include?(k)} # reserved
 end

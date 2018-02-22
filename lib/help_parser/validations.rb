@@ -36,6 +36,10 @@ module HelpParser
     raise HelpError, MSG[UNRECOGNIZED_TYPE,spec] unless spec=~TYPE_DEF
   end
 
+  def self.validate_x_spec(spec)
+    raise HelpError, MSG[UNRECOGNIZED_X,spec] unless spec=~X_DEF
+  end
+
   def self.validate_option_spec(spec)
     case spec
     when SHORT, LONG, SHORT_LONG, SHORT_LONG_DEFAULT
@@ -46,8 +50,15 @@ module HelpParser
   end
 
   def self.validate_usage_specs(specs)
-    option_specs = specs.select{|a,b| !(a==USAGE || a==TYPES)}
-    flags = option_specs.values.flatten.select{|f|f[0]=='-'}.map{|f| HelpParser.f2k(f)}
+    option_specs = specs.select{|a,b| !RESERVED[a]}
+    flags = option_specs.values.flatten.select{|f|f[0]=='-'}.map{|f| F2K[f]}
+    unless specs[EXCLUSIVE].nil?
+      specs[EXCLUSIVE].each do |xs|
+        xs.each do |x|
+          raise HelpError, MSG[UNSEEN_FLAG, x] unless flags.include?(x)
+        end
+      end
+    end
     flags.each_with_index do |flag,i|
       raise HelpError, MSG[DUP_FLAG,flag] unless i==flags.rindex(flag)
     end   
@@ -64,7 +75,7 @@ module HelpParser
     end
     specs.each do |key,tokens|
       raise HelpError, MSG[MISSING_CASES,key] unless tokens.size>0
-      next if specs_usage.nil? || key==USAGE || key==TYPES
+      next if specs_usage.nil? or RESERVED[key]
       raise HelpError, MSG[MISSING_USAGE,key] unless group.include?(key)
     end
   end

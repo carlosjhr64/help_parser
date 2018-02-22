@@ -12,8 +12,4 @@ module HelpParser
       super
     end
   end
-
-  def self.f2k(f)
-    f[1]=='-' ? f[2..((f.index('=')||0)-1)] : f[1]
-  end
 end
