@@ -1,14 +1,16 @@
 module HelpParser
   def self.parseh(help)
-    specs,name = NoDupHash.new,""
+    specs,name = NoDupHash.new,''
     help.each_line do |line|
       line.chomp!
-      next if line==""
+      next if line==''
       if line=~/^[A-Z]\w+:$/
         name = line[0..-2].downcase
         specs[name] = []
       else
-        next if name=="" || !(line[0]==' ')
+        next if name==''
+        break if line[0]=='#'
+        next if line[0]!=' '
         spec = (index=line.rindex("\t"))? line[0,index].strip : line.strip
         HelpParser.validate_no_extraneous_spaces(spec)
         if name==USAGE

@@ -27,25 +27,25 @@ module HelpParser
   end
 
   class UsageError < HelpParserException
-    def _init; @code = 64; end
+    def _init; @code = EX_USAGE; end
   end
 
   class SoftwareError < HelpParserException
     # Stuff that should not happen
-    def _init; @code = 70; end
+    def _init; @code = EX_SOFTWARE; end
   end
 
   class NoMatch < HelpParserException
     # used to shortcircuit out
-    def _init; @code = 70; end
+    def _init; @code = EX_SOFTWARE; end
 
     # Forces it's owm message
     def initialize
-      super("Software Error: NoMatch was not caught by HelpParser.")
+      super(NO_MATCH)
     end
   end
 
   class HelpError < HelpParserException
-    def _init; @code = 78; end
+    def _init; @code = EX_CONFIG; end
   end
 end

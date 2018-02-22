@@ -36,9 +36,11 @@ has as familiar text.
       NAME  /^[A-Z][a-z]+$/
       FLOAT /^\\d+\\.\\d+$/
       YN    /^[YNyn]$/
+    # NOTES #
+    Blah blah blah
     HELP
 
-    VERSION = "5.1.0"
+    VERSION = "5.2.0"
 
     # Macros:
     HelpParser.string(name)  # for options.name    : String

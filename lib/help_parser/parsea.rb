@@ -4,9 +4,9 @@ module HelpParser
     n = 0
     argv.each do |a|
       if a[0]=='-'
-        break if a.size==1 # "-" quits argv processing
+        break if a.size==1 # '-' quits argv processing
         if a[1]=='-'
-          break if a.size==2 # "--" also quits argv processing
+          break if a.size==2 # '--' also quits argv processing
           s = a[2..-1]
           if s.include?('=')
             k,v = s.split('=',2)

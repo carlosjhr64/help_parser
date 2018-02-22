@@ -9,7 +9,7 @@ module HelpParser
       end
       break if count<0
     end
-    raise HelpError, "Unbalance brackets: "+chars.join unless count==0
+    raise HelpError, MSG[UNBALANCED,chars.join] unless count==0
   end
 
   def self.validate_usage_tokens(tokens)
@@ -19,11 +19,11 @@ module HelpParser
               token.match(LITERAL)  ||
               token.match(VARIABLE) ||
               token.match(FLAG_GROUP)
-      raise HelpError, "Unrecognized usage token: #{token}" unless match
-      words.push match["k"] # key
+      raise HelpError, MSG[UNRECOGNIZED_TOKEN,token] unless match
+      words.push match['k'] # key
     end
     words.each_with_index do |word,i|
-      raise HelpError, "Duplicate word: #{word}" unless i==words.rindex(word)
+      raise HelpError, MSG[DUP_WORD,word] unless i==words.rindex(word)
     end
   end
 
@@ -33,7 +33,7 @@ module HelpParser
   end
 
   def self.validate_type_spec(spec)
-    raise HelpError, "Unrecognized type spec: "+spec unless spec=~TYPE_DEF
+    raise HelpError, MSG[UNRECOGNIZED_TYPE,spec] unless spec=~TYPE_DEF
   end
 
   def self.validate_option_spec(spec)
@@ -41,7 +41,7 @@ module HelpParser
     when SHORT, LONG, SHORT_LONG, SHORT_LONG_DEFAULT
       # OK
     else
-      raise HelpError, "Unrecognized option spec: #{spec}"
+      raise HelpError, MSG[UNRECOGNIZED_OPTION,spec]
     end
   end
 
@@ -49,23 +49,23 @@ module HelpParser
     option_specs = specs.select{|a,b| !(a==USAGE || a==TYPES)}
     flags = option_specs.values.flatten.select{|f|f[0]=='-'}.map{|f| HelpParser.f2k(f)}
     flags.each_with_index do |flag,i|
-      raise HelpError, "Duplicate flag: #{flag}" unless i==flags.rindex(flag)
+      raise HelpError, MSG[DUP_FLAG,flag] unless i==flags.rindex(flag)
     end   
     group = []
     specs_usage = specs[USAGE]
     unless specs_usage.nil?
       specs_usage.flatten.each do |token|
         if match = token.match(FLAG_GROUP)
-          key = match["k"]
-          raise HelpError, "No #{key} section given." unless specs[key]
+          key = match['k']
+          raise HelpError, MSG[UNDEFINED_SECTION,key] unless specs[key]
           group.push(key)
         end
       end
     end
     specs.each do |key,tokens|
-      raise HelpError, "No #{key} cases given." unless tokens.size>0
+      raise HelpError, MSG[MISSING_CASES,key] unless tokens.size>0
       next if specs_usage.nil? || key==USAGE || key==TYPES
-      raise HelpError, "No usage given for #{key}." unless group.include?(key)
+      raise HelpError, MSG[MISSING_USAGE,key] unless group.include?(key)
     end
   end
 
@@ -73,7 +73,7 @@ module HelpParser
     a,b = k2t.values.uniq.sort,t2r.keys.sort
     unless a==b
       c = (a+b).uniq.select{|x|!(a.include?(x) && b.include?(x))}
-      raise HelpError, "Uncompleted types definition: #{c.join(",")}"
+      raise HelpError, MSG[UNCOMPLETED_TYPES,c.join(',')]
     end
     specs.each do |section,tokens|
       next if section==USAGE || section==TYPES
@@ -87,12 +87,12 @@ module HelpParser
         long = long_type[2..(i-1)]
         type = long_type[(i+1)..-1]
         regex = t2r[type]
-        raise HelpError, "Default not #{type}: #{long}" unless regex=~default
+        raise HelpError, MSG[BAD_DEFAULT,long,default,type,regex.inspect] unless regex=~default
       end
     end
   end
 
   def self.validate_no_extraneous_spaces(spec)
-    raise HelpError, "Extraneous spaces in help." if spec == ""
+    raise HelpError, EXTRANEOUS_SPACES if spec == ''
   end
 end

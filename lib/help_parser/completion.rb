@@ -20,7 +20,7 @@ module HelpParser
           @cache.clear
         end
       end
-      raise UsageError, "Please match usage."
+      raise UsageError, MATCH_USAGE
     end
 
     def types
@@ -39,7 +39,7 @@ module HelpParser
                 raise UsageError, "--#{key}=#{string} !~ #{type}=#{regex.inspect}" unless string=~regex
               end
             else
-              raise UsageError, "Need a #{type}: #{key}"
+              raise UsageError, "--#{key} !~ #{type}=#{regex.inspect}"
             end
           end
         end
@@ -59,7 +59,7 @@ module HelpParser
               short,long = first[1],second[2..(i-1)]
               if @hash.has_key?(short)
                 if @hash.has_key?(long)
-                  raise UsageError, "Option #{short} is a synonym for #{long}."
+                  raise UsageError, MSG[REDUNDANT, short, long]
                 end
                 @hash[long] = (default.nil?) ? true : default
               elsif value = @hash[long]
@@ -94,7 +94,7 @@ module HelpParser
           end
           next
         elsif m=FLAG_GROUP.match(token)
-          group,plus = m["k"],m["p"]
+          group,plus = m['k'],m['p']
           key = keys[i]
           raise NoMatch if key.nil? || key.is_a?(Integer)
           list = @specs[group].flatten.select{|f|f[0]=='-'}.map{|f| HelpParser.f2k(f)}
@@ -109,7 +109,7 @@ module HelpParser
         elsif m=VARIABLE.match(token)
           key = keys[i]
           raise NoMatch unless key.is_a?(Integer)
-          variable,plus = m["k"],m["p"]
+          variable,plus = m['k'],m['p']
           if plus.nil?
             @cache[variable] = @hash[key]
           else

@@ -1,12 +1,12 @@
 module HelpParser
   def self._parseu(chars)
-    tokens,token = [],""
+    tokens,token = [],''
     while c = chars.shift
       case c
       when ' ','[',']'
-        unless token==""
+        unless token==''
           tokens.push(token)
-          token = ""
+          token = ''
         end
         tokens.push HelpParser._parseu(chars) if c=='['
         return tokens if c==']'
@@ -14,7 +14,7 @@ module HelpParser
         token += c
       end
     end
-    tokens.push(token) unless token==""
+    tokens.push(token) unless token==''
     return tokens
   end
 

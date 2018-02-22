@@ -1,3 +1,7 @@
+== TODO
+
+See Fishshell's argparse for ideas.
+
 == File List
 
 TODO:	Symmetry demands this,
