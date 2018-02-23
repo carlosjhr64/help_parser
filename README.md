@@ -1,16 +1,14 @@
-# Help Parser
-## V: Infamous
+# Help Parser VI: Tweeker
 
 * [github](https://www.github.com/carlosjhr64/Ruby-HelpParser)
 * [rubygems](https://rubygems.org/gems/help_parser)
 
 ## DESCRIPTION:
-All help is about to get parsed...
-Again!!!
-
-And this time,
-the battle between complexity and simplicity
-has as familiar text.
+Welcome to the best Help Parser of all!
+Tweeker!
+Which do you find most helpful?
+Hard?
+I prefer easy.
 
 ## SYNOPSIS:
 
@@ -18,7 +16,8 @@ has as familiar text.
     require "help_parser"
 
     HELP = <<-HELP
-    The Awesome Command.
+    # <= Hash here, parser skips
+    # The Awesome Command.
     Usage:
       awesome [:options+] <args>+
       awesome :alternate <arg=NAME>
@@ -36,7 +35,10 @@ has as familiar text.
       NAME  /^[A-Z][a-z]+$/
       FLOAT /^\\d+\\.\\d+$/
       YN    /^[YNyn]$/
-    # NOTES #
+    Exclusive:
+      version help       \t Tells parser these are exclusive keys
+    # <= Hash here, parser breaks out
+    # Notes #
     Blah blah blah
     HELP
 
@@ -58,7 +60,8 @@ has as familiar text.
       pp options.number?
     end
 
-YES!!!
+Well, what do you think?
+PERFECT!
 
 ## INSTALL:
 
