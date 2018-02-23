@@ -8,21 +8,23 @@ Gem::Specification.new do |s|
   s.author   = 'carlosjhr64'
   s.email    = 'carlosjhr64@gmail.com'
 
-  s.date     = '2018-02-22'
+  s.date     = '2018-02-23'
   s.licenses = ['MIT']
 
   s.description = <<DESCRIPTION
-All help is about to get parsed...
-Again!!!
-
-And this time,
-the battle between complexity and simplicity
-has as familiar text.
+Welcome to the best Help Parser of all!
+Tweeker!
+Which do you find most helpful?
+Hard?
+I prefer easy.
 DESCRIPTION
 
   s.summary = <<SUMMARY
-All help is about to get parsed...
-Again!!!
+Welcome to the best Help Parser of all!
+Tweeker!
+Which do you find most helpful?
+Hard?
+I prefer easy.
 SUMMARY
 
   #s.extra_rdoc_files = ['README.md']
@@ -46,6 +48,6 @@ lib/help_parser/parseu.rb
 lib/help_parser/validations.rb
   )
 
-  s.requirements << 'ruby: ruby 2.4.2p198 (2017-09-14 revision 59899) [x86_64-linux]'
+  s.requirements << 'ruby: ruby 2.5.0p0 (2017-12-25 revision 61468) [x86_64-linux]'
 
 end
