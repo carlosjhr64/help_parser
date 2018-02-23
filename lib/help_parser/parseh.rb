@@ -12,20 +12,23 @@ module HelpParser
         break if line[0]=='#'
         next if line[0]!=' '
         spec = (index=line.rindex("\t"))? line[0,index].strip : line.strip
-        HelpParser.validate_no_extraneous_spaces(spec)
+        raise HelpError, EXTRANEOUS_SPACES if spec == ''
         case name
         when USAGE
-          HelpParser.validate_usage_spec(spec)
           specs[name].push HelpParser.parseu spec
         when TYPES
-          HelpParser.validate_type_spec(spec)
+          raise HelpError, MSG[UNRECOGNIZED_TYPE,spec] unless spec=~TYPE_DEF
           specs[name].push spec.split(CSV)
         when EXCLUSIVE
-          HelpParser.validate_x_spec(spec)
+          raise HelpError, MSG[UNRECOGNIZED_X,spec] unless spec=~X_DEF
           specs[name].push spec.split(CSV)
         else
-          HelpParser.validate_option_spec(spec)
-          specs[name].push spec.split(CSV)
+          case spec
+          when SHORT, LONG, SHORT_LONG, SHORT_LONG_DEFAULT
+            specs[name].push spec.split(CSV)
+          else
+            raise HelpError, MSG[UNRECOGNIZED_OPTION,spec]
+          end
         end
       end
     end

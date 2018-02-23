@@ -27,28 +27,6 @@ module HelpParser
     end
   end
 
-  def self.validate_usage_spec(spec)
-    # TODO: Symmetry demands this,
-    # but I can't think of any help text errors I'm not already catching.
-  end
-
-  def self.validate_type_spec(spec)
-    raise HelpError, MSG[UNRECOGNIZED_TYPE,spec] unless spec=~TYPE_DEF
-  end
-
-  def self.validate_x_spec(spec)
-    raise HelpError, MSG[UNRECOGNIZED_X,spec] unless spec=~X_DEF
-  end
-
-  def self.validate_option_spec(spec)
-    case spec
-    when SHORT, LONG, SHORT_LONG, SHORT_LONG_DEFAULT
-      # OK
-    else
-      raise HelpError, MSG[UNRECOGNIZED_OPTION,spec]
-    end
-  end
-
   def self.validate_usage_specs(specs)
     option_specs = specs.select{|a,b| !RESERVED[a]}
     flags = option_specs.values.flatten.select{|f|f[0]=='-'}.map{|f| F2K[f]}
@@ -106,9 +84,5 @@ module HelpParser
         raise HelpError, MSG[BAD_DEFAULT,long,default,type,regex.inspect] unless regex=~default
       end
     end
-  end
-
-  def self.validate_no_extraneous_spaces(spec)
-    raise HelpError, EXTRANEOUS_SPACES if spec == ''
   end
 end
