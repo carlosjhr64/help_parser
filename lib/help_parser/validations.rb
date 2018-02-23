@@ -53,9 +53,14 @@ module HelpParser
     option_specs = specs.select{|a,b| !RESERVED[a]}
     flags = option_specs.values.flatten.select{|f|f[0]=='-'}.map{|f| F2K[f]}
     unless specs[EXCLUSIVE].nil?
+      seen = {}
       specs[EXCLUSIVE].each do |xs|
+        k = xs.sort.join
+        raise HelpError, MSG[DUP_X,*xs] if seen[k]
+        seen[k] = true
         xs.each do |x|
           raise HelpError, MSG[UNSEEN_FLAG, x] unless flags.include?(x)
+          k<<x
         end
       end
     end
