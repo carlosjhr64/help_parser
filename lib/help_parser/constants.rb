@@ -1,4 +1,12 @@
 module HelpParser
+  @@validate = false
+  def self.validate!
+    @@validate = true
+  end
+  def self.validate?
+    @@validate
+  end
+
   USAGE = 'usage'
   TYPES = 'types'
   EXCLUSIVE = 'exclusive'

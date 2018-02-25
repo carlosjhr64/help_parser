@@ -1,17 +1,23 @@
 module HelpParser
   class Options
-    def initialize( version, help, argv)
+    def initialize(version, help, argv)
       @hash = HelpParser.parsea(argv)
       if version && (@hash.has_key?('v') || @hash.has_key?('version'))
         # -v or --version
         raise VersionException, version
       end
       if help
-        if @hash.has_key?('h') || @hash.has_key?('help')
-          # -h or --help
+        # -h or --help
+        if @hash.has_key?('h') || _=@hash.has_key?('help')
+          begin
+            # validates help
+            HelpParser.parseh(help, true)
+          rescue HelpError
+            $stderr.puts $!
+          end if _
           raise HelpException, help
         end
-        specs = HelpParser.parseh(help)
+        specs = HelpParser.parseh(help, HelpParser.validate?)
         Completion.new(@hash, specs)
         if xs=specs[EXCLUSIVE]
           xs.each{|x| raise HelpParser::UsageError, MSG[EXCLUSIVE_KEYS,*x] if @hash.keys.count{|k|x.include?(k)}>1}

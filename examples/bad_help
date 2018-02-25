@@ -213,7 +213,7 @@ HELPS = [
   HELP6, HELP7, HELP8, HELP9, HELP10,
   HELP11, HELP12, HELP13, HELP14, HELP15
 ]
-
+HelpParser.validate!
 N = (ARGV.size>0)? ARGV[0].to_i : 0
 OPTIONS = HelpParser["1.2.3", HELPS[index]]
 puts OPTIONS._hash.to_json
