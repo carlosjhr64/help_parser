@@ -42,7 +42,7 @@ I prefer easy.
     Blah blah blah
     HELP
 
-    VERSION = "6.0.0"
+    VERSION = "6.1.0"
 
     # Macros:
     HelpParser.string(name)  # for options.name    : String
@@ -62,6 +62,11 @@ I prefer easy.
 
 Well, what do you think?
 PERFECT!
+
+## New for 6.1.0:
+
+Running your `awesome` command with the `--help` flag will also check your help text for errors,
+on top of giving the help text. Otherwise, the parser no longer checks for help text errors.
 
 ## INSTALL:
 
