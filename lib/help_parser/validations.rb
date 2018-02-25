@@ -33,12 +33,11 @@ module HelpParser
     unless specs[EXCLUSIVE].nil?
       seen = {}
       specs[EXCLUSIVE].each do |xs|
-        k = xs.sort.join
+        k = xs.sort.join(',').to_sym
         raise HelpError, MSG[DUP_X,*xs] if seen[k]
         seen[k] = true
         xs.each do |x|
           raise HelpError, MSG[UNSEEN_FLAG, x] unless flags.include?(x)
-          k<<x
         end
       end
     end

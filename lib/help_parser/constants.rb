@@ -63,7 +63,7 @@ module HelpParser
   EXTRANEOUS_SPACES   = 'Extraneous spaces in help.'
 
   # lambda utilities
-  MSG = lambda{|msg,*keys| "#{msg}:  #{keys.join(' ')}"}
+  MSG = lambda{|msg,*keys| "\033[0;31m#{msg}:  #{keys.join(' ')}\033[0m"}
   F2K = lambda{|f| f[1]=='-' ? f[2..((f.index('=')||0)-1)] : f[1]}
   RESERVED = lambda{|k| [USAGE,TYPES,EXCLUSIVE].include?(k)} # reserved
 end
