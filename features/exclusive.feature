@@ -33,7 +33,7 @@ Feature: Testing examples/exclusive
     * Then stdout is ""
 
   Scenario: -e -d
-    * Given option "-c -d"
+    * Given option "-e -d"
     * When we run command
     * Then exit status is "64"
     * Then stderr is "Exclusive keys:  c d e"
