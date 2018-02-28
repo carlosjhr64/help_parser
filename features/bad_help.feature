@@ -106,13 +106,20 @@ Feature: Testing examples/bad_help
     * Given option "14"
     * When we run command
     * Then exit status is "78"
+    * Then stderr is "Duplicate flag:  n"
+    * Then stdout is ""
+
+  Scenario: 15
+    * Given option "15"
+    * When we run command
+    * Then exit status is "78"
     * Then stderr is "Duplicate exclusive spec:  b a"
     * Then stdout is ""
 
   # Actually, this one should be good help
-  Scenario: 15
-    * Given option "15"
+  Scenario: 16
+    * Given option "16"
     * When we run command
     * Then exit status is "0"
     * Then stderr is ""
-    * Then stdout is '{"0":"bad_help","1":"15","arg1":"15"}'
+    * Then stdout is '{"0":"bad_help","1":"16","arg1":"16"}'
