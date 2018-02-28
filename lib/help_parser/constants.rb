@@ -1,5 +1,5 @@
 module HelpParser
-  @@validate = true # false TODO revert
+  @@validate = false
   def self.validate!
     @@validate = true
   end
