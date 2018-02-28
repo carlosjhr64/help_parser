@@ -113,7 +113,7 @@ Feature: Testing examples/bad_help
     * Given option "15"
     * When we run command
     * Then exit status is "78"
-    * Then stderr is "Duplicate exclusive spec:  b a"
+    * Then stderr is "Duplicate exclusive spec:  a b"
     * Then stdout is ""
 
   # Actually, this one should be good help
