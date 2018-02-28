@@ -30,9 +30,9 @@ module HelpParser
   def self.validate_usage_specs(specs)
     option_specs = specs.select{|a,b| !RESERVED[a]}
     flags = option_specs.values.flatten.select{|f|f[0]=='-'}.map{|f| F2K[f]}
-    unless specs[EXCLUSIVE].nil?
+    if exclusive=specs[EXCLUSIVE]
       seen = {}
-      specs[EXCLUSIVE].each do |xs|
+      exclusive.each do |xs|
         k = xs.sort.join(',').to_sym
         raise HelpError, MSG[DUP_X,*xs] if seen[k]
         seen[k] = true

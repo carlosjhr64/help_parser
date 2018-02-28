@@ -19,8 +19,8 @@ module HelpParser
         end
         specs = HelpParser.parseh(help, HelpParser.validate?)
         Completion.new(@hash, specs)
-        if xs=specs[EXCLUSIVE]
-          xs.each{|x| raise HelpParser::UsageError, MSG[EXCLUSIVE_KEYS,*x] if @hash.keys.count{|k|x.include?(k)}>1}
+        if exclusive=specs[EXCLUSIVE]
+          exclusive.each{|xs| raise HelpParser::UsageError, MSG[EXCLUSIVE_KEYS,*xs] if @hash.keys.count{|k|xs.include?(k)}>1}
         end
       end
     end

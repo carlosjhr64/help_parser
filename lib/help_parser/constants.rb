@@ -28,7 +28,7 @@ module HelpParser
   # spec W+ /~/
   TYPE_DEF = /^(?<t>[A-Z]+),?\s+\/(?<r>\S+)\/$/
 
-  # spec w+( w+)*
+  # spec w+( w+)+
   X_DEF = /^\w+( +\w+)+$/
 
   CSV = /,?\s+/
