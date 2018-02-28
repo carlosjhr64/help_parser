@@ -39,7 +39,6 @@ module HelpParser
   EX_CONFIG   = 78
 
   # error messages, partials:
-  NO_MATCH            = 'Software Error: NoMatch was not caught by HelpParser.'
   DUP_KEY             = 'Duplicate key'
   DUP_WORD            = 'Duplicate word'
   DUP_FLAG            = 'Duplicate flag'
@@ -67,6 +66,7 @@ module HelpParser
   NOT_INTEGER         = 'Not an Integer'
   NOT_INTEGERS        = 'Not all Integers'
   # error messages, full:
+  NO_MATCH            = 'Software Error: NoMatch was not caught by HelpParser.'
   MATCH_USAGE         = 'Please match usage.'
   EXTRANEOUS_SPACES   = 'Extraneous spaces in help.'
 

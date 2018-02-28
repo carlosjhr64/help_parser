@@ -10,7 +10,7 @@ module HelpParser
       else
         next if name==''
         break if line[0]=='#'
-        next if line[0]!=' '
+        next if !(line[0]==' ')
         spec = (index=line.rindex("\t"))? line[0,index].strip : line.strip
         raise HelpError, EXTRANEOUS_SPACES if validate and spec==''
         case name
