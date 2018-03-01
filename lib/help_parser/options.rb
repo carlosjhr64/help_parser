@@ -11,14 +11,18 @@ module HelpParser
         if @hash.has_key?('h') || _=@hash.has_key?('help')
           begin
             # validates help
-            HelpParser.parseh(help, true)
+            specs = HelpParser.parseh(help, true)
+            if t2r = HelpParser.t2r(specs)
+              k2t = HelpParser.k2t(specs, true)
+              HelpParser.validate_k2t2r(specs, k2t, t2r)
+            end
           rescue HelpError
             $stderr.puts $!
           end if _
           raise HelpException, help
         end
         specs = HelpParser.parseh(help, HelpParser.validate?)
-        Completion.new(@hash, specs)
+        Completion.new(@hash, specs, HelpParser.validate?)
         if exclusive=specs[EXCLUSIVE]
           exclusive.each{|xs| raise HelpParser::UsageError, MSG[EXCLUSIVE_KEYS,*xs] if @hash.keys.count{|k|xs.include?(k)}>1}
         end

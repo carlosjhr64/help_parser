@@ -18,11 +18,11 @@ module HelpParser
     return tokens
   end
 
-  def self.parseu(line)
+  def self.parseu(line, validate=true)
     chars = line.chars
     HelpParser.validate_line_chars(chars)
     tokens = HelpParser._parseu(chars)
-    HelpParser.validate_usage_tokens(tokens)
+    HelpParser.validate_usage_tokens(tokens) if validate
     return tokens
   end
 end

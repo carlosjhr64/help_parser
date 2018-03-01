@@ -42,7 +42,7 @@ I prefer easy.
     Blah blah blah
     HELP
 
-    VERSION = "6.1.0"
+    VERSION = "6.2.0"
 
     # Macros:
     HelpParser.string(name)  # for options.name    : String
