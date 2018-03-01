@@ -1,11 +1,11 @@
 module HelpParser
   class Completion
-    def initialize(hash, specs, validate=true)
+    def initialize(hash, specs)
       @hash,@specs = hash,specs
       @cache = NoDupHash.new
       usage if @specs.has_key?(USAGE)
       pad
-      types(validate)
+      types
     end
 
     def usage
@@ -24,10 +24,9 @@ module HelpParser
       raise UsageError, MATCH_USAGE
     end
 
-    def types(validate=true)
+    def types
       if t2r = HelpParser.t2r(@specs)
-        k2t = HelpParser.k2t(@specs, validate)
-        HelpParser.validate_k2t2r(@specs, k2t, t2r) if validate
+        k2t = HelpParser.k2t(@specs)
         @hash.each do |key,value|
           next unless key.is_a?(String)
           if type = k2t[key]

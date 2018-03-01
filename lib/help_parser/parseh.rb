@@ -33,7 +33,13 @@ module HelpParser
         end
       end
     end
-    HelpParser.validate_usage_specs(specs) if validate
+    if validate
+      HelpParser.validate_usage_specs(specs)
+      if t2r = HelpParser.t2r(specs)
+        k2t = HelpParser.k2t(specs)
+        HelpParser.validate_k2t2r(specs, k2t, t2r)
+      end
+    end
     return specs
   end
 end
