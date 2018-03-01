@@ -15,7 +15,10 @@ module HelpParser
         raise HelpError, EXTRANEOUS_SPACES if validate and spec==''
         case name
         when USAGE
-          specs[name].push HelpParser.parseu(spec, validate)
+          HelpParser.validate_line_chars(spec.chars) if validate
+          tokens = HelpParser.parseu(spec.chars)
+          HelpParser.validate_usage_tokens(tokens) if validate
+          specs[name].push tokens
         when TYPES
           raise HelpError, MSG[UNRECOGNIZED_TYPE,spec] if validate and not spec=~TYPE_DEF
           specs[name].push spec.split(CSV)
