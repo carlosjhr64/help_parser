@@ -25,3 +25,5 @@ a81524ce777f517d969e421ce5de4f1c  pkg/help_parser-5.1.0.gem
 b2d43bf9ea4f229bf09267e613c7a6cf  pkg/help_parser-6.1.0.gem
 === 6.2.0 / 2018-02-28 16:06:25 -0800
 e0616e00abfb0550d194fe6d0e1250f6  pkg/help_parser-6.2.0.gem
+=== 6.3.0 / 2018-03-01 09:33:56 -0800
+7888c5e7db0c0b5e299452d98a6205cb  pkg/help_parser-6.3.0.gem
