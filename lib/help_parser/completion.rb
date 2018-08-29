@@ -21,6 +21,11 @@ module HelpParser
           @cache.clear
         end
       end
+      if _ = @specs["options"]
+        dict = _.flatten.map{|_|_.scan(/\w+/).first}
+        typos = @hash.keys.select{|k|k.is_a? String and not dict.include? k}
+        raise UsageError, MSG[UNRECOGNIZED, typos] unless typos.empty?
+      end
       raise UsageError, MATCH_USAGE
     end
 
