@@ -23,6 +23,7 @@ module HelpParser
           exclusive.each{|xs| raise HelpParser::UsageError, MSG[EXCLUSIVE_KEYS,*xs] if @hash.keys.count{|k|xs.include?(k)}>1}
         end
       end
+      $VERBOSE = true if @hash['verbose']==true
     end
 
     def _hash

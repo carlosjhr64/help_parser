@@ -1,12 +1,12 @@
 == TODO
 
-"silentyly" automate -V --verbose to mean $VERBOSE==true
-Allow user override? That is, if user defines -V and --verbose, don't do $VERBOSE=true
-
+== Maybe not
 
 When a type check fails, drop to next usage.
 
 == Done
+
+"silently" automate --verbose to mean $VERBOSE==true when hash['verbose']==true
 
 On a typo of a option name, it currently just gives "Please match usage."
 But should give the unrecognize name.
