@@ -63,6 +63,11 @@ I prefer easy.
 Well, what do you think?
 PERFECT!
 
+## New for 6.4.0:
+
+* Automates $VERBOSE=true on --verbose
+* Reports typos you may have on options usage
+
 ## New for 6.1.0:
 
 Running your `awesome` command with the `--help` flag will also check your help text for errors,
