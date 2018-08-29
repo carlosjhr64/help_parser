@@ -27,9 +27,6 @@ Hard?
 I prefer easy.
 SUMMARY
 
-  #s.extra_rdoc_files = ['README.md']
-  #s.rdoc_options     = ['--main', 'README.md']
-
   s.require_paths = ['lib']
   s.files = %w(
 LICENSE
@@ -48,6 +45,6 @@ lib/help_parser/parseu.rb
 lib/help_parser/validations.rb
   )
 
-  s.requirements << 'ruby 2.5.1p57 (2018-03-29 revision 63029) [x86_64-linux]'
+  s.requirements << 'ruby: ruby 2.5.1p57 (2018-03-29 revision 63029) [x86_64-linux]'
 
 end
