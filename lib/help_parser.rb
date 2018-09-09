@@ -11,7 +11,7 @@ require_relative './help_parser/options'
 require_relative './help_parser/macros'
 
 module HelpParser
-  VERSION = '6.4.0'
+  VERSION = '6.4.1'
 
   def self.[](
     version = nil,

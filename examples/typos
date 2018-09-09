@@ -1,0 +1,21 @@
+#!/usr/bin/env ruby
+require "json"
+require_relative "../lib/help_parser"
+
+HELP = <<-HELP
+### The Help ###
+Usage:
+  #{File.basename($0)} :options+
+  #{File.basename($0)} :alternate+ <string>
+Options:
+  -a --abc
+  -x --xyz
+Alternate:
+  -n --number
+  -m --amount
+HELP
+
+VERSION = "1.0.0"
+
+OPTIONS = HelpParser[VERSION, HELP]
+puts OPTIONS._hash.to_json

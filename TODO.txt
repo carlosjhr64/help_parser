@@ -1,5 +1,7 @@
 == TODO
 
+Inclusive(must pair)?
+
 == Maybe not
 
 When a type check fails, drop to next usage.

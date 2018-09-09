@@ -21,11 +21,15 @@ module HelpParser
           @cache.clear
         end
       end
-      if _ = @specs["options"]
-        dict = _.flatten.map{|_|_.scan(/\w+/).first}
-        typos = @hash.keys.select{|k|k.is_a? String and not dict.include? k}
-        raise UsageError, MSG[UNRECOGNIZED, typos] unless typos.empty?
+
+      dict = {}
+      @specs.each do |k,v|
+        next if [USAGE,TYPES,EXCLUSIVE].include? k
+        v.flatten.map{|_|_.scan(/\w+/).first}.each{|_|dict[_]=true}
       end
+      typos = @hash.keys.select{|k|k.is_a? String and not dict[k]}
+      raise UsageError, MSG[UNRECOGNIZED, typos] unless typos.empty?
+
       raise UsageError, MATCH_USAGE
     end
 
