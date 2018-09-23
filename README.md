@@ -42,7 +42,7 @@ I prefer easy.
     Blah blah blah
     HELP
 
-    VERSION = "6.4.1"
+    VERSION = "6.4.2"
 
     # Macros:
     HelpParser.string(name)  # for options.name    : String
@@ -62,6 +62,10 @@ I prefer easy.
 
 Well, what do you think?
 PERFECT!
+
+## New for 6.4.2:
+
+* Automates $DEBUG=true on --debug
 
 ## New for 6.4.0:
 

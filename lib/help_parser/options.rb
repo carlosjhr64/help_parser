@@ -24,6 +24,7 @@ module HelpParser
         end
       end
       $VERBOSE = true if @hash['verbose']==true
+      $DEBUG = true if @hash['debug']==true
     end
 
     def _hash
