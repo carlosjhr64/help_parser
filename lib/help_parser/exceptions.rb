@@ -10,7 +10,7 @@ module HelpParser
 
     def exit
       if @code > 0
-        STDERR.puts self.message
+        STDERR.puts "\033[0;31m#{self.message}\033[0m"
       else
         puts self.message
       end

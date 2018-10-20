@@ -12,15 +12,14 @@ I prefer easy.
 
 ## SYNOPSIS:
 
-    require "pp"
     require "help_parser"
 
     HELP = <<-HELP
     # <= Hash here, parser skips
-    # The Awesome Command.
+    # The Awesome Command #
     Usage:
       awesome [:options+] <args>+
-      awesome :alternate <arg=NAME>
+      awesome :alternate+ <arg=NAME>
     Options:
       -v --version       \t Give version and quit
       -h --help          \t Give help and quit
@@ -31,18 +30,20 @@ I prefer easy.
       -a --all=YN y      \t Short, long, typed, and defaulted
     Alternate:
       -V                 \t Just short
+      --to_be
+      --not_to_be
     Types:
       NAME  /^[A-Z][a-z]+$/
       FLOAT /^\\d+\\.\\d+$/
       YN    /^[YNyn]$/
     Exclusive:
-      version help       \t Tells parser these are exclusive keys
+      to_be not_to_be    \t Tells parser these are mutually exclusive keys
     # <= Hash here, parser breaks out
     # Notes #
     Blah blah blah
     HELP
 
-    VERSION = "6.4.2"
+    VERSION = "6.5.0"
 
     # Macros:
     HelpParser.string(name)  # for options.name    : String

@@ -1,12 +1,11 @@
 #!/usr/bin/env ruby
-require "pp"
 require_relative "../lib/help_parser"
 
 HELP = <<-HELP
-The Awesome Command.
+# The Awesome Command #
 Usage:
   awesome [:options+] <args>+
-  awesome :alternate <arg=NAME>
+  awesome :alternate+ <arg=NAME>
 Options:
   -v --version       \t Give version and quit
   -h --help          \t Give help and quit
@@ -17,13 +16,19 @@ Options:
   -a --all=YN y      \t Short, long, typed, and defaulted
 Alternate:
   -V                 \t Just short
+  --to_be
+  --not_to_be
 Types:
   NAME  /^[A-Z][a-z]+$/
   FLOAT /^\\d+\\.\\d+$/
   YN    /^[YNyn]$/
+Exclusive:
+  to_be not_to_be    \t Tells parser these are mutually exclusive keys
+# Notes #
+Blah blah blah
 HELP
 
-VERSION = "5.0.0"
+VERSION = "6.5.0"
 
 # Macros:
 HelpParser.string(:name)  # for options.name   : String

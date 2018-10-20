@@ -15,28 +15,28 @@ Feature: Testing examples/readme
     * When we run command
     * Then exit status is "0"
     * Then stderr is ""
-    * Then stdout is "5.0.0"
+    * Then stdout is "6.5.0"
 
   Scenario: --version
     * Given option "--version"
     * When we run command
     * Then exit status is "0"
     * Then stderr is ""
-    * Then stdout is "5.0.0"
+    * Then stdout is "6.5.0"
 
   Scenario: -h
     * Given option "-h"
     * When we run command
     * Then exit status is "0"
     * Then stderr is ""
-    * Then header is "The Awesome Command."
+    * Then header is "# The Awesome Command #"
 
   Scenario: --help
     * Given option "--help"
     * When we run command
     * Then exit status is "0"
     * Then stderr is ""
-    * Then header is "The Awesome Command."
+    * Then header is "# The Awesome Command #"
 
   Scenario: First Usage
   # {0=>"awesome",
@@ -102,3 +102,10 @@ Feature: Testing examples/readme
     * Then exit status is "0"
     * Then stderr is ""
     * Then digest is "f6ab3f2729fd22f82ff526e556b5bf39"
+
+  Scenario: --to_be --not_to_be
+    * Given option "--to_be --not_to_be Joe"
+    * When we run command
+    * Then exit status is "64"
+    * Then stderr is "Exclusive keys:  to_be not_to_be"
+    * Then stdout is ""
