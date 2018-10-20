@@ -33,3 +33,5 @@ abb1c5a8e6bd1ed29f0bc4a982f513a9  pkg/help_parser-6.4.0.gem
 345f8d33cfd30720b5fee01d69f66b22  pkg/help_parser-6.4.1.gem
 === 6.4.2 / 2018-09-22 17:07:15 -0700
 16eabdb190484b1ca7057d24d2da54f3  pkg/help_parser-6.4.2.gem
+=== 6.5.0 / 2018-10-20 14:20:38 -0700
+ccfb01f0942c1a9ee8bf0b043e1b5b86  pkg/help_parser-6.5.0.gem
