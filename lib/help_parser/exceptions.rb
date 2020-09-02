@@ -36,10 +36,10 @@ module HelpParser
   end
 
   class NoMatch < HelpParserException
-    # used to shortcircuit out
+    # used to short-circuit out
     def _init; @code = EX_SOFTWARE; end
 
-    # Forces it's owm message
+    # Forces it's own message
     def initialize
       super(NO_MATCH)
     end
