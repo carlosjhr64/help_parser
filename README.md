@@ -1,6 +1,6 @@
 # Help Parser VI: Tweeker
 
-* [VERSION 6.5.200902](https://github.com/carlosjhr64/Ruby-HelpParser/releases)
+* [VERSION 6.5.200904](https://github.com/carlosjhr64/Ruby-HelpParser/releases)
 * [github](https://www.github.com/carlosjhr64/Ruby-HelpParser)
 * [rubygems](https://rubygems.org/gems/help_parser)
 

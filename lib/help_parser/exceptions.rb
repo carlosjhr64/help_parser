@@ -9,10 +9,12 @@ module HelpParser
     end
 
     def exit
+      message = self.message
       if @code > 0
-        STDERR.puts "\033[0;31m#{self.message}\033[0m"
+        message = "\033[0;31m#{message}\033[0m"  if $stderr.tty?
+        $stderr.puts message
       else
-        puts self.message
+        $stdout.puts message
       end
       Kernel.exit @code
     end

@@ -1,0 +1,10 @@
+#! ruby
+require 'test/unit'
+
+class TestManual < Test::Unit::TestCase
+  def test_manual
+    system('ruby examples/usage')
+    print 'Is the "Please match usage." message above red?(Y/n): '
+    fail  unless $stdin.gets.strip == 'Y'
+  end
+end

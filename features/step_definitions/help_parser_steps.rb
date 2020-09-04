@@ -12,8 +12,7 @@ end
 
 When %r/When we run command/ do
   @stdout, @stderr, @status = Open3.capture3("#{@command} #{@options}")
-  @stdout.chomp!; @stderr.chomp!
-  @stderr.gsub!(/\e\[([;\d]+)?m/, '') # removes term colors
+  [@stdout, @stderr].each{|_|_.chomp!}
 end
 
 Then %r/Then exit status is "(\d+)"/ do |status|
@@ -34,19 +33,25 @@ Then %r/Then stdout is "([^"]*)"/ do |string|
   end
 end
 
-Then %r/Then stderr is "([^"']*)"/ do |string|
+Then %r/Then stderr is "([^"]*)"/ do |string|
   unless @stderr == string
     raise "stderr: Expectected '#{string}'. Got '#{@stderr}'"
   end
 end
 
-Then %r/Then stdout includes "([^"']*)"/ do |string|
+Then %r/Then stderr is '([^']*)'/ do |string|
+  unless @stderr == string
+    raise "stderr: Expectected '#{string}'. Got '#{@stderr}'"
+  end
+end
+
+Then %r/Then stdout includes "([^"]*)"/ do |string|
   unless @stdout.include?(string)
     raise "Stdout did not include '#{string}'"
   end
 end
 
-Then %r/Then stderr includes "([^"']*)"/ do |string|
+Then %r/Then stderr includes "([^"]*)"/ do |string|
   unless @stderr.include?(string)
     raise "Stderr did not include '#{string}'"
   end

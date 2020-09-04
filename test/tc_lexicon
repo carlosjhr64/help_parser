@@ -40,6 +40,6 @@ class TestLexicon < Test::Unit::TestCase
   def test_lexicon_code
     hex = Rubbish.fish("cat lib/**.rb | egrep -v '^\\s*#' | spell | md5sum").split.first
     # If spell returns no errors, the hexadecimal will be d41d8cd98f00b204e9800998ecf8427e
-    assert_equal '721eb72819e858708e43befde5242822', hex, 'Hexdigest Code'
+    assert_equal '4d1e66b0f7d16eff8d53d80cad7112c7', hex, 'Hexdigest Code'
   end
 end
