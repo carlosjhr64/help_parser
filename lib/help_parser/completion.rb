@@ -3,25 +3,30 @@ module HelpParser
     def initialize(hash, specs)
       @hash,@specs = hash,specs
       @cache = NoDupHash.new
-      usage if @specs.has_key?(USAGE)
+      usage or diagnose  if @specs.has_key?(USAGE)
       pad
       types
     end
 
+    # Which usage does the user's command options match?
     def usage
       @specs[USAGE].each do |cmd|
         begin
           i = matches(cmd)
           raise NoMatch unless @hash.size==i
           @cache.each{|k,v|@hash[k]=v} # Variables
-          return
+          return true # Good! Found matching usage.
         rescue NoMatch
           next
         ensure
           @cache.clear
         end
       end
+      return false # Bad! Did not match any of the expected usage.
+    end
 
+    # Diagnose user's usage.
+    def diagnose
       dict = {}
       @specs.each do |k,v|
         next if [USAGE,TYPES,EXCLUSIVE].include? k
@@ -74,7 +79,7 @@ module HelpParser
               elsif value = @hash[long]
                 @hash[short] = true
                 if value==true && !default.nil?
-                  @hash.delete(long)
+                  @hash.delete(long) # ArgvHash reset
                   @hash[long]=default
                 end
               end
@@ -83,7 +88,7 @@ module HelpParser
               long,default = first[2..(i-1)],second
               value = @hash[long]
               if value==true
-                @hash.delete(long)
+                @hash.delete(long) # ArgvHash reset
                 @hash[long] = default
               end
             end
