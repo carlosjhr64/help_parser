@@ -5,8 +5,11 @@ module HelpParser
     tokens.each do |token|
       if match = VARIABLE.match(token) || LONG.match(token)
         name, type = match['k'], match['t']
-        k2t[name] = type if !k2t.has_key?(name)
-        raise HelpError, MSG[INCONSISTENT,name,type,k2t[name]] if !(type==k2t[name])
+        if _=k2t[name]
+          raise HelpError, MSG[INCONSISTENT,name,type,_]  unless type==_
+        else
+          k2t[name] = type
+        end
       else
         # Expected these to be caught earlier...
         raise SoftwareError, MSG[UNEXPECTED,token]

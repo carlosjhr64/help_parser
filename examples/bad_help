@@ -3,7 +3,7 @@ require "json"
 require_relative "../lib/help_parser"
 
 def index
-  ARGV[0].to_i
+  ARGV.shift.to_i
 rescue Exception
   0
 end
@@ -226,7 +226,6 @@ HELPS = [
   HELP11, HELP12, HELP13, HELP14, HELP15,
   HELP16,
 ]
-HelpParser.validate!
-N = (ARGV.size>0)? ARGV[0].to_i : 0
-OPTIONS = HelpParser["1.2.3", HELPS[index]]
+
+OPTIONS = HelpParser["1.2.3", HELPS[index], [PN, '--help']]
 puts OPTIONS._hash.to_json

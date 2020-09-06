@@ -122,4 +122,4 @@ Feature: Testing examples/bad_help
     * When we run command
     * Then exit status is "0"
     * Then stderr is ""
-    * Then stdout is '{"0":"bad_help","1":"16","arg1":"16"}'
+    * Then digest is "8dee11708152ecb980860f324bacb151"

@@ -9,15 +9,10 @@ module HelpParser
       if help
         # -h or --help
         if @hash.has_key?('h') || _=@hash.has_key?('help')
-          begin
-            # validates help
-            HelpParser.parseh(help, true)
-          rescue HelpError
-            $stderr.puts $!
-          end if _
+          HelpParser.parseh(help, validate: true)  if _
           raise HelpException, help
         end
-        specs = HelpParser.parseh(help, HelpParser.validate?)
+        specs = HelpParser.parseh(help)
         Completion.new(@hash, specs)
         if exclusive=specs[EXCLUSIVE]
           exclusive.each{|xs| raise HelpParser::UsageError, MSG[EXCLUSIVE_KEYS,*xs] if @hash.keys.count{|k|xs.include?(k)}>1}

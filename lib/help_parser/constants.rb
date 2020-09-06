@@ -1,12 +1,4 @@
 module HelpParser
-  @@validate = false
-  def self.validate!
-    @@validate = true
-  end
-  def self.validate?
-    @@validate
-  end
-
   USAGE = 'usage'
   TYPES = 'types'
   EXCLUSIVE = 'exclusive'
@@ -75,4 +67,5 @@ module HelpParser
   MSG = lambda{|msg,*keys| "#{msg}:  #{keys.join(' ')}"}
   F2K = lambda{|f| f[1]=='-' ? f[2..((f.index('=')||0)-1)] : f[1]}
   RESERVED = lambda{|k| [USAGE,TYPES,EXCLUSIVE].include?(k)} # reserved
+  REDTTY = lambda{|msg,out=$stderr| out.tty? ? out.puts("\033[0;31m#{msg}\033[0m"): out.puts(msg)}
 end

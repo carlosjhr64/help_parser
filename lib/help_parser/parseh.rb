@@ -1,5 +1,5 @@
 module HelpParser
-  def self.parseh(help, validate=true)
+  def self.parseh(help, validate: false)
     specs,name = NoDupHash.new,''
     help.each_line do |line|
       line.chomp!
