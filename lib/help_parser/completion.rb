@@ -5,7 +5,7 @@ module HelpParser
       @cache = NoDupHash.new
       usage or diagnose  if @specs.has_key?(USAGE)
       pad
-      types
+      types  if @specs.has_key?(TYPES)
     end
 
     # Which usage does the user's command options match?
@@ -39,22 +39,20 @@ module HelpParser
     end
 
     def types
-      if t2r = HelpParser.t2r(@specs)
-        k2t = HelpParser.k2t(@specs)
-        @hash.each do |key,value|
-          next unless key.is_a?(String)
-          if type = k2t[key]
-            regex = t2r[type]
-            case value
-            when String
-              raise UsageError, "--#{key}=#{value} !~ #{type}=#{regex.inspect}" unless value=~regex
-            when Array
-              value.each do |string|
-                raise UsageError, "--#{key}=#{string} !~ #{type}=#{regex.inspect}" unless string=~regex
-              end
-            else
-              raise UsageError, "--#{key} !~ #{type}=#{regex.inspect}"
+      t2r,k2t = HelpParser.t2r(@specs),HelpParser.k2t(@specs)
+      @hash.each do |key,value|
+        next unless key.is_a?(String)
+        if type = k2t[key]
+          regex = t2r[type]
+          case value
+          when String
+            raise UsageError, "--#{key}=#{value} !~ #{type}=#{regex.inspect}" unless value=~regex
+          when Array
+            value.each do |string|
+              raise UsageError, "--#{key}=#{string} !~ #{type}=#{regex.inspect}" unless string=~regex
             end
+          else
+            raise UsageError, "--#{key} !~ #{type}=#{regex.inspect}"
           end
         end
       end
