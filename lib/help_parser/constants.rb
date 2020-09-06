@@ -2,6 +2,7 @@ module HelpParser
   USAGE = 'usage'
   TYPES = 'types'
   EXCLUSIVE = 'exclusive'
+  INCLUSIVE = 'inclusive'
 
   # usage
   FLAG       = /^[-][-]?(?<k>\w+)$/
@@ -21,7 +22,7 @@ module HelpParser
   TYPE_DEF = /^(?<t>[A-Z]+),?\s+\/(?<r>\S+)\/$/
 
   # spec w+( w+)+
-  X_DEF = /^\w+( +\w+)+$/
+  X_DEF = /^\w+( +\w+)+$/ # for both exclusive and inclusive specs
 
   CSV = /,?\s+/
 
@@ -34,17 +35,18 @@ module HelpParser
   DUP_KEY             = 'Duplicate key'
   DUP_WORD            = 'Duplicate word'
   DUP_FLAG            = 'Duplicate flag'
-  DUP_X               = 'Duplicate exclusive spec'
+  DUP_X               = 'Duplicate exclusive/inclusive spec'
   UNSEEN_FLAG         = 'Undefined flag'
   INCONSISTENT        = 'Inconsistent use of variable'
   UNEXPECTED          = 'Unexpected string in help text'
   BAD_REGEX           = 'Bad regex'
   REDUNDANT           = 'Redundant'
   EXCLUSIVE_KEYS      = 'Exclusive keys'
+  INCLUSIVE_KEYS      = 'Inclusive keys'
   UNBALANCED          = 'Unbalanced brackets'
   UNRECOGNIZED_TOKEN  = 'Unrecognized usage token'
   UNRECOGNIZED_TYPE   = 'Unrecognized type spec'
-  UNRECOGNIZED_X      = 'Unrecognized exclusive spec'
+  UNRECOGNIZED_X      = 'Unrecognized exclusive/inclusive spec'
   UNRECOGNIZED_OPTION = 'Unrecognized option spec'
   UNRECOGNIZED        = 'Unrecognized'
   UNDEFINED_SECTION   = 'Section not defined'
@@ -66,6 +68,6 @@ module HelpParser
   # lambda utilities
   MSG = lambda{|msg,*keys| "#{msg}:  #{keys.join(' ')}"}
   F2K = lambda{|f| f[1]=='-' ? f[2..((f.index('=')||0)-1)] : f[1]}
-  RESERVED = lambda{|k| [USAGE,TYPES,EXCLUSIVE].include?(k)} # reserved
+  RESERVED = lambda{|k| [USAGE,TYPES,EXCLUSIVE,INCLUSIVE].include?(k)} # reserved
   REDTTY = lambda{|msg,out=$stderr| out.tty? ? out.puts("\033[0;31m#{msg}\033[0m"): out.puts(msg)}
 end

@@ -22,9 +22,9 @@ module HelpParser
         when TYPES
           raise HelpError, MSG[UNRECOGNIZED_TYPE,spec] if validate and not spec=~TYPE_DEF
           specs[TYPES].push spec.split(CSV)
-        when EXCLUSIVE
+        when EXCLUSIVE,INCLUSIVE
           raise HelpError, MSG[UNRECOGNIZED_X,spec] if validate and not spec=~X_DEF
-          specs[EXCLUSIVE].push spec.split(CSV)
+          specs[name].push spec.split(CSV)
         else
           if validate and not [SHORT, LONG, SHORT_LONG, SHORT_LONG_DEFAULT].any?{|_|_=~spec}
             raise HelpError, MSG[UNRECOGNIZED_OPTION,spec]

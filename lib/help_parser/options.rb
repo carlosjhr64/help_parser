@@ -15,7 +15,16 @@ module HelpParser
         specs = HelpParser.parseh(help)
         Completion.new(@hash, specs)
         if exclusive=specs[EXCLUSIVE]
-          exclusive.each{|xs| raise HelpParser::UsageError, MSG[EXCLUSIVE_KEYS,*xs] if @hash.keys.count{|k|xs.include?(k)}>1}
+          exclusive.each do |x|
+            count = @hash.keys.count{|k|x.include?(k)}
+            raise HelpParser::UsageError, MSG[EXCLUSIVE_KEYS,*x] if count > 1
+          end
+        end
+        if inclusive=specs[INCLUSIVE]
+          inclusive.each do |i|
+            count = @hash.keys.count{|k|i.include?(k)}
+            raise HelpParser::UsageError, MSG[INCLUSIVE_KEYS,*i] unless count==0 or count==i.length
+          end
         end
       end
       $VERBOSE = true if @hash['verbose']==true
