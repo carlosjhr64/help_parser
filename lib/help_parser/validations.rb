@@ -34,7 +34,7 @@ module HelpParser
       seen = {}
       exclusive.each do |xs|
         k = xs.sort.join(' ').to_sym
-        raise HelpError, MSG[DUP_X,k] if seen[k]
+        raise HelpError, MSG[DUP_X,k] if seen[k] or not xs.length==xs.uniq.length
         seen[k] = true
         xs.each do |x|
           raise HelpError, MSG[UNSEEN_FLAG, x] unless flags.include?(x)

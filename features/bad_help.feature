@@ -131,3 +131,11 @@ Feature: Testing examples/bad_help
     * Then exit status is "78"
     * Then stderr is "Unrecognized option spec:  --abc -a"
     * Then stdout is ""
+
+  # Accidental double exclusive
+  Scenario: 18
+    * Given option "18"
+    * When we run command
+    * Then exit status is "78"
+    * Then stderr is "Duplicate exclusive spec:  abc abc"
+    * Then stdout is ""

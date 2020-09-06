@@ -18,13 +18,13 @@ module HelpParser
           HelpParser.validate_line_chars(spec.chars) if validate
           tokens = HelpParser.parseu(spec.chars)
           HelpParser.validate_usage_tokens(tokens) if validate
-          specs[name].push tokens
+          specs[USAGE].push tokens
         when TYPES
           raise HelpError, MSG[UNRECOGNIZED_TYPE,spec] if validate and not spec=~TYPE_DEF
-          specs[name].push spec.split(CSV)
+          specs[TYPES].push spec.split(CSV)
         when EXCLUSIVE
           raise HelpError, MSG[UNRECOGNIZED_X,spec] if validate and not spec=~X_DEF
-          specs[name].push spec.split(CSV)
+          specs[EXCLUSIVE].push spec.split(CSV)
         else
           if validate and not [SHORT, LONG, SHORT_LONG, SHORT_LONG_DEFAULT].any?{|_|_=~spec}
             raise HelpError, MSG[UNRECOGNIZED_OPTION,spec]

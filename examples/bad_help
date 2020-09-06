@@ -229,11 +229,22 @@ Options:
   --xyz -x
 HELP
 
+# Accidental double exclusive
+HELP18 = <<-HELP
+Usage:
+  #{PN} [:options+] <arg1>
+Options:
+  -a --abc
+  -x --xyz
+Exclusive:
+  abc abc
+HELP
+
 HELPS = [
   HELP0, HELP1, HELP2, HELP3, HELP4, HELP5,
   HELP6, HELP7, HELP8, HELP9, HELP10,
   HELP11, HELP12, HELP13, HELP14, HELP15,
-  HELP16, HELP17
+  HELP16, HELP17, HELP18
 ]
 
 OPTIONS = HelpParser["1.2.3", HELPS[index], [PN, '--help']]
