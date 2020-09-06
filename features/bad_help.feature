@@ -123,3 +123,11 @@ Feature: Testing examples/bad_help
     * Then exit status is "0"
     * Then stderr is ""
     * Then digest is "8dee11708152ecb980860f324bacb151"
+
+  # It should be '-s --long', not '--long -s'
+  Scenario: 17
+    * Given option "17"
+    * When we run command
+    * Then exit status is "78"
+    * Then stderr is "Unrecognized option spec:  --abc -a"
+    * Then stdout is ""
