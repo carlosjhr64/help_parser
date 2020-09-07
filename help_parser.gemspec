@@ -8,23 +8,19 @@ Gem::Specification.new do |s|
   s.author   = 'carlosjhr64'
   s.email    = 'carlosjhr64@gmail.com'
 
-  s.date     = '2020-09-05'
+  s.date     = '2020-09-07'
   s.licenses = ['MIT']
 
   s.description = <<DESCRIPTION
-Welcome to the best Help Parser of all!
-Tweeker!
-Which do you find most helpful?
-Hard?
-I prefer easy.
+Can't help YOU???
+You're not the first to say that...
+
+I will parse your help!
 DESCRIPTION
 
   s.summary = <<SUMMARY
-Welcome to the best Help Parser of all!
-Tweeker!
-Which do you find most helpful?
-Hard?
-I prefer easy.
+Can't help YOU???
+You're not the first to say that...
 SUMMARY
 
   s.require_paths = ['lib']
@@ -45,6 +41,6 @@ lib/help_parser/parseu.rb
 lib/help_parser/validations.rb
   )
 
-  s.requirements << 'ruby: ruby 2.7.1'
+  s.requirements << 'ruby: ruby 2.7.1p83 (2020-03-31 revision a0c7c23c9c) [x86_64-linux]'
 
 end
