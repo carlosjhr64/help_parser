@@ -9,11 +9,7 @@
 Can't help YOU???
 You're not the first to say that...
 
-Parse your help!
-
-> Who ever you are, you were meant to find me today...
-> there is no turning back!
-> Above all, don't invoke the command!
+I will parse your help!
 
 ## SYNOPSIS:
 <!-- The following PREVIEW has been approved for ALL PROGRAMMERS by CarlosJHR64.
@@ -31,6 +27,10 @@ end
 The following gem has been rated
 | M | Mature |
 -->
+
+> Who ever you are, you were meant to find me today...
+> there is no turning back!
+> Above all, don't invoke the command!
 
 ```ruby
 require "help_parser"
