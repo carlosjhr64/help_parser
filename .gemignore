@@ -2,6 +2,7 @@
  (\.)|
  (examples\/)|
  (test\/)|
+ (cucumber\.)|
  (features\/)|
  (TODO\.)|
  (\w+\.gemspec)|

@@ -9,6 +9,8 @@
 Can't help YOU???
 You're not the first to say that...
 
+Parse your help!
+
 > Who ever you are, you were meant to find me today...
 > there is no turning back!
 > Above all, don't invoke the command!
