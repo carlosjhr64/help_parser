@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
 
   s.name     = 'help_parser'
-  s.version  = '6.5.200906'
+  s.version  = '7.0.200907'
 
   s.homepage = 'https://github.com/carlosjhr64/Ruby-HelpParser'
 

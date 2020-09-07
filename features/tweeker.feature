@@ -1,8 +1,8 @@
-@readme
-Feature: Testing examples/readme
+@tweeker
+Feature: Testing examples/tweeker
 
   Background:
-    * Given command "ruby examples/readme"
+    * Given command "ruby examples/tweeker"
 
   Scenario: Plain
     * When we run command
@@ -29,17 +29,17 @@ Feature: Testing examples/readme
     * When we run command
     * Then exit status is "0"
     * Then stderr is ""
-    * Then header is "# The Awesome Command #"
+    * Then header is "# The Tweeker Command #"
 
   Scenario: --help
     * Given option "--help"
     * When we run command
     * Then exit status is "0"
     * Then stderr is ""
-    * Then header is "# The Awesome Command #"
+    * Then header is "# The Tweeker Command #"
 
   Scenario: First Usage
-  # {0=>"awesome",
+  # {0=>"tweeker",
   #  "s"=>true,
   #  "name"=>"Joe",
   #  "a"=>true,
@@ -59,16 +59,16 @@ Feature: Testing examples/readme
     * When we run command
     * Then exit status is "0"
     * Then stderr is ""
-    * Then digest is "22554ca2f1dad1a841687dc64ec635ea"
+    * Then digest is "71ab7a0d6d3e617e9a699d851f7a832a"
 
   Scenario: Second Usage
-  # {0=>"awesome", "V"=>true, 1=>"Joe", "arg"=>"Joe"}
+  # {0=>"tweeker", "V"=>true, 1=>"Joe", "arg"=>"Joe"}
   # nil
     * Given option "-V Joe"
     * When we run command
     * Then exit status is "0"
     * Then stderr is ""
-    * Then digest is "731b1911c063d3706f5bce586d12e283"
+    * Then digest is "18ba9a5cfd4b12b819c76839a5c7da4c"
 
   Scenario: -s --long synonyms
     * Given option "-s --long synonyms"
@@ -94,14 +94,14 @@ Feature: Testing examples/readme
   Scenario: --number=BAD number
   ## Note that "BAD".to_i is 0 in the ruby version, so
   ## you really need to type it.
-  # {0=>"awesome", "number"=>"BAD", 1=>"number", "args"=>["number"]}
+  # {0=>"tweeker", "number"=>"BAD", 1=>"number", "args"=>["number"]}
   # ["number"]
   # 0
     * Given option "--number=BAD number"
     * When we run command
     * Then exit status is "0"
     * Then stderr is ""
-    * Then digest is "f6ab3f2729fd22f82ff526e556b5bf39"
+    * Then digest is "fce7d4155de56f27fb75b2735d3e5364"
 
   Scenario: --to_be --not_to_be
     * Given option "--to_be --not_to_be Joe"

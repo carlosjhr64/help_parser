@@ -1,28 +1,33 @@
-# Help Parser VI: Tweeker
+# Help Parser VII: Deader
 
-* [VERSION 6.5.200906](https://github.com/carlosjhr64/Ruby-HelpParser/releases)
+* [VERSION 7.0.200907](https://github.com/carlosjhr64/Ruby-HelpParser/releases)
 * [github](https://www.github.com/carlosjhr64/Ruby-HelpParser)
 * [rubygems](https://rubygems.org/gems/help_parser)
 
 ## DESCRIPTION:
-Welcome to the best Help Parser of all!
-Tweeker!
-Which do you find most helpful?
-Hard?
-I prefer easy.
+
+Can't help YOU???
+You're not the first to say that...
+
+> Who ever you are, you were meant to find me today...
+> there is no turning back!
+> Above all, don't invoke the command!
 
 ## SYNOPSIS:
-<!-- For the README validator that checks against me lying....
+<!-- The following PREVIEW has been approved for ALL PROGRAMMERS by CarlosJHR64.
+For the README validator that checks against me lying....
 ```ruby
-unless File.basename($PROGRAM_NAME) == 'awesome'
+unless File.basename($PROGRAM_NAME) == 'deader'
   # For example's sake say
-  $PROGRAM_NAME = 'awesome'
+  $PROGRAM_NAME = 'deader'
   # and ARGV is
-  ARGV.concat ["-\-name=Doe", "-\-value", 'a', 'b', 'c']
+  ARGV.concat ["-\-age", "-\-date=2020-09-07", 'invoke', 'the', 'command']
   # and proceed as if run as:
   #     awesome -\-name=Doe -\-value  a b c
 end
 ```
+The following gem has been rated
+| M | Mature |
 -->
 
 ```ruby
@@ -30,68 +35,65 @@ require "help_parser"
 
 HELP = <<-HELP
 # <= Hash here, parser skips
-# The Awesome Command #
+# HelpParser: Deader command example #
 Usage:
-  awesome [:options+] <args>+
-  awesome :alternate+ <arg=NAME>
+  deader :options+ [<args>+]
+  deader [:alternate] <arg=FLOAT>
+  deader literal <arg1=WORD> <arg2=WORD> <arg3=WORD>
 Options:
   -v --version       \t Give version and quit
   -h --help          \t Give help and quit
   -s --long          \t Short long synonyms
-  --name=NAME        \t Typed
-  --number 5         \t Defaulted
-  --value=FLOAT 1.23 \t Typed and Defaulted
+  --command invoke   \t Defaulted
+  --date=DATE        \t Typed
+  --age=INTEGER 80   \t Typed and Defaulted
   -a --all=YN y      \t Short, long, typed, and defaulted
-Alternate:
-  -V                 \t Just short
   --to_be
   --not_to_be
-Types:
-  NAME  /^[A-Z][a-z]+$/
-  FLOAT /^\\d+\\.\\d+$/
-  YN    /^[YNyn]$/
 Exclusive:
   to_be not_to_be    \t Tells parser these are mutually exclusive keys
+Inclusive:
+  date age           \t Tells parser any of these must include all of these
+Alternate:
+  --invoke
+  --wut
+Types:
+  WORD    /^[A-Za-z]+$/
+  DATE    /^\\d\\d\\d\\d-\\d\\d-\\d\\d$/
+  INTEGER /^\\d+$/
+  FLOAT   /^\\d+\\.\\d+$/
+  YN      /^[YNyn]$/
 # <= Hash here, parser breaks out
 # Notes #
-Blah blah blah
+Don't invoke the command.
 HELP
 
 VERSION = "1.2.3"
 
-# Macros:
-HelpParser.string(:name)  # for options.name    : String
-HelpParser.strings(:args) # for options.args    : Array(String)
-HelpParser.float(:value)  # for options.value   : Float
-HelpParser.int?(:number)  # for options.number? : Integer | Nil
-#=> [:number]
-
 OPTIONS = HelpParser[VERSION, HELP] #~> HelpParser
 
-# If run as:
-#     awesome --name=Doe --value a b c
-OPTIONS.name    #=> "Doe"
-OPTIONS.value   #=> 1.23
-OPTIONS.args    #=> ["a", "b", "c"]
-OPTIONS.number? #=> nil
+# Macros:
+HelpParser.strings?(:args)             # for OPTIONS.args      : Array(String) | Nil
+HelpParser.int?(:age)                  # for OPTIONS.age?      : Integer | Nil
+HelpParser.float(:arg)                 # for options.arg       : Float
+HelpParser.string(:arg1, :arg2, :arg3) # for OPTIONS.arg1, etc : String
+#=> [:arg1, :arg2, :arg3]
+
+## If run as:
+##   deader --age --date=2020-09-07 invoke the command
+OPTIONS.age                  #=> 80
+OPTIONS.args                 #=> ["invoke", "the", "command"]
+OPTIONS.arg? and OPTIONS.arg #=> false
 ```
 
-Well, what do you think?
-PERFECT!
+YOU HAVE INVOKED THE COMMAND...
+YOUR HELP BELONGS TO ME!!!
 
-## New for 6.4.2:
+## Features
 
-* Automates $DEBUG=true on --debug
-
-## New for 6.4.0:
-
-* Automates $VERBOSE=true on --verbose
-* Reports typos you may have on options usage
-
-## New for 6.1.0:
-
-Running your `awesome` command with the `--help` flag will also check your help text for errors,
-on top of giving the help text. Otherwise, the parser no longer checks for help text errors.
+* $DEBUG=true on --debug
+* $VERBOSE=true on --verbose
+* -h and --help simultaneously will check help string for errors
 
 ## INSTALL:
 

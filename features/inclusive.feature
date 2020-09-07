@@ -1,4 +1,4 @@
-@simple
+@inclusive
 Feature: Testing examples/inclusive
 
   Background:

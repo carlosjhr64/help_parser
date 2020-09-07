@@ -1,4 +1,4 @@
-@simple
+@typos
 Feature: Testing examples/simple
 
   Background:

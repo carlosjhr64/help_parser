@@ -258,5 +258,5 @@ HELPS = [
   HELP16, HELP17, HELP18, HELP19
 ]
 
-OPTIONS = HelpParser["1.2.3", HELPS[index], [PN, '--help']]
+OPTIONS = HelpParser["1.2.3", HELPS[index], [PN, '--help', '-h']]
 puts OPTIONS._hash.to_json

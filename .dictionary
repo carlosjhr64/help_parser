@@ -1,5 +1,8 @@
 0m
 31m
+arg1
+arg2
+arg3
 ARGV
 ArgvHash
 CONFIG
@@ -16,7 +19,6 @@ README
 REGEX
 Regexp
 SoftwareError
-Tweeker
 UsageError
 VersionException
 YNyn

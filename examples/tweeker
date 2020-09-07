@@ -1,11 +1,12 @@
 #!/usr/bin/env ruby
 require_relative "../lib/help_parser"
 
+# README help synopsis from version VI, Tweeker.
 HELP = <<-HELP
-# The Awesome Command #
+# The Tweeker Command #
 Usage:
-  awesome [:options+] <args>+
-  awesome :alternate+ <arg=NAME>
+  tweeker [:options+] <args>+
+  tweeker :alternate+ <arg=NAME>
 Options:
   -v --version       \t Give version and quit
   -h --help          \t Give help and quit
@@ -36,7 +37,7 @@ HelpParser.strings(:args) # for options.args   : Array(String)
 HelpParser.float(:value)  # for options.value  : Float
 HelpParser.int?(:number)  # for options.number : Int32 | Nil
 
-HelpParser.run(VERSION, HELP, ["awesome"]+ARGV) do |options|
+HelpParser.run(VERSION, HELP, ["tweeker"]+ARGV) do |options|
   hash = options._hash
   pp hash # to inspect the hash
 

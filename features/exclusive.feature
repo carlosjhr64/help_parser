@@ -1,4 +1,4 @@
-@simple
+@exclusive
 Feature: Testing examples/exclusive
 
   Background:

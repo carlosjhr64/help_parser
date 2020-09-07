@@ -1,0 +1,77 @@
+#!/usr/bin/env ruby
+require "help_parser"
+
+HELP = <<-HELP
+# <= Hash here, parser skips
+# HelpParser: Deader command example #
+Usage:
+  deader :options+ [<args>+]
+  deader [:alternate] <arg=FLOAT>
+  deader literal <arg1=WORD> <arg2=WORD> <arg3=WORD>
+Options:
+  -v --version       \t Give version and quit
+  -h --help          \t Give help and quit
+  -s --long          \t Short long synonyms
+  --command invoke   \t Defaulted
+  --date=DATE        \t Typed
+  --age=INTEGER 80   \t Typed and Defaulted
+  -a --all=YN y      \t Short, long, typed, and defaulted
+  --to_be
+  --not_to_be
+Exclusive:
+  to_be not_to_be    \t Tells parser these are mutually exclusive keys
+Inclusive:
+  date age           \t Tells parser any of these must include all of these
+Alternate:
+  --invoke
+  --wut
+Types:
+  WORD    /^[A-Za-z]+$/
+  DATE    /^\\d\\d\\d\\d-\\d\\d-\\d\\d$/
+  INTEGER /^\\d+$/
+  FLOAT   /^\\d+\\.\\d+$/
+  YN      /^[YNyn]$/
+# <= Hash here, parser breaks out
+# Notes #
+Don't invoke the command.
+HELP
+
+VERSION = "1.2.3"
+
+OPTIONS = HelpParser[VERSION, HELP] #~> HelpParser
+
+# Macros:
+HelpParser.strings?(:args)             # for OPTIONS.args      : Array(String) | Nil
+HelpParser.int?(:age)                  # for OPTIONS.age?      : Integer | Nil
+HelpParser.float(:arg)                 # for options.arg       : Float
+HelpParser.string(:arg1, :arg2, :arg3) # for OPTIONS.arg1, etc : String
+#=> [:arg1, :arg2, :arg3]
+
+## If run as:
+##   deader --age --date=2020-09-07 invoke the command
+OPTIONS.age                  #=> 80
+OPTIONS.args                 #=> ["invoke", "the", "command"]
+OPTIONS.arg? and OPTIONS.arg #=> false
+
+def invoke_the_command
+  require 'zlib'
+  require 'base64'
+  ohnooo = <<-OHNOOO
+  eJx1VLuOg0AM7PkKyzI6naX4itBSnZIiouALKAD/wJV8/dne5ZmNJaRAZuzx
+  2LsVlEJ0RguwhyxGlaqAuuHhZUBkNmwJKvj2CeDLwNMb9qeoB7AxFVfwDHAv
+  w130FU0AXIAKUQEthh6mS0ZSynHtcaYOoJHtvaFTXJXHN8uvHhLwx28nT6ZN
+  jBJiKzu8txoWT2tjS3uDFb5YPlkF3wOXBudszPCUiPMspLXZTlUo7XZhvf2N
+  iSi5lIios1eei3MLhiTXitbiSjnKx08jhowc+gzq0kPqwhvM2+IcV1RPipib
+  hb1FipHJH0IbLiBuViJ7z4CWgUmjKjPnAtglxTJjyLV/8DAElz7BYA+tnTWv
+  INbxRZRRVHs8Dy47iV/UqrkixJ6ZJrPfzorITIzXtUOOEtzWjRnaQUfQpwlF
+  P4Vzha4Ia9bx1S1jXroRyuDVfDgtHZShXlJ9EDuyLgNd9rQ1/Kk0+NFGXNeW
+  xvfzHJh0UYhPwe0zRvGWyDBb/YOEgccjVlqOmykB+XCxII9TkGw0G0FoQ8jC
+  12toyItju2hx0GQ2qRdP+1MIK7Od9vvOs4QP/LYTQ2WaB4d0bdv55D3JvK77
+  Z6LvqPLJOlzt+Bw+Rayqf+685bk=
+  OHNOOO
+  puts Zlib::Inflate.inflate Base64.decode64 ohnooo
+end
+invoke_the_command if OPTIONS.args == ['invoke', 'the', 'command'] or
+  OPTIONS.command == 'invoke' or
+  (OPTIONS.invoke and OPTIONS.arg? and OPTIONS.arg==6.66) or
+  (OPTIONS.arg1 and OPTIONS.arg1=='invoke' and OPTIONS.arg2=='the' and OPTIONS.arg3=='command')
