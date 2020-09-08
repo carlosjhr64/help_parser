@@ -83,9 +83,12 @@ HelpParser.string(:arg1, :arg2, :arg3) # for OPTIONS.arg1, etc : String
 
 ## If run as:
 ##   deader --age --date=2020-09-07 invoke the command
-OPTIONS.age                  #=> 80
-OPTIONS.args                 #=> ["invoke", "the", "command"]
+OPTIONS.age?                 #=> 80
+OPTIONS.age?.class           #=> Integer
+OPTIONS.args?                #=> ["invoke", "the", "command"]
+OPTIONS.args?.class          #=> Array
 OPTIONS.arg? and OPTIONS.arg #=> false
+OPTIONS.arg?.class           #=> FalseClass
 ```
 
 YOU HAVE INVOKED THE COMMAND...
