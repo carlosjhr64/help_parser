@@ -42,7 +42,6 @@ SoftwareError
 stderr
 stdout
 sublicense
-sudo
 sym
 tty
 uniq
