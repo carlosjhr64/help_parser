@@ -11,6 +11,12 @@ You're not the first to say that...
 
 I will parse your help!
 
+## INSTALL:
+
+```shell
+$ gem install help_parser
+```
+
 ## SYNOPSIS:
 <!-- The following PREVIEW has been approved for ALL PROGRAMMERS by CarlosJHR64.
 For the README validator that checks against me lying....
@@ -99,10 +105,6 @@ YOUR HELP BELONGS TO ME!!!
 * $DEBUG=true on --debug
 * $VERBOSE=true on --verbose
 * -h and --help simultaneously will check help string for errors
-
-## INSTALL:
-
-    $ sudo gem install help_parser
 
 ## LICENSE:
 
