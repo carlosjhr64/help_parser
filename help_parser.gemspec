@@ -1,14 +1,14 @@
 Gem::Specification.new do |s|
 
   s.name     = 'help_parser'
-  s.version  = '7.0.200907'
+  s.version  = '7.0.210121'
 
   s.homepage = 'https://github.com/carlosjhr64/Ruby-HelpParser'
 
   s.author   = 'carlosjhr64'
   s.email    = 'carlosjhr64@gmail.com'
 
-  s.date     = '2020-09-07'
+  s.date     = '2021-01-21'
   s.licenses = ['MIT']
 
   s.description = <<DESCRIPTION

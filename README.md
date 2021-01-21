@@ -1,6 +1,6 @@
 # Help Parser VII: Deader
 
-* [VERSION 7.0.200907](https://github.com/carlosjhr64/Ruby-HelpParser/releases)
+* [VERSION 7.0.210121](https://github.com/carlosjhr64/Ruby-HelpParser/releases)
 * [github](https://www.github.com/carlosjhr64/Ruby-HelpParser)
 * [rubygems](https://rubygems.org/gems/help_parser)
 
@@ -108,7 +108,7 @@ YOUR HELP BELONGS TO ME!!!
 
 (The MIT License)
 
-Copyright (c) 2020 CarlosJHR64
+Copyright (c) 2021 CarlosJHR64
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
