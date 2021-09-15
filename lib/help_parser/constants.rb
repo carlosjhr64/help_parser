@@ -5,6 +5,9 @@ module HelpParser
   EXCLUSIVE = 'exclusive'
   INCLUSIVE = 'inclusive'
 
+  # sections
+  SECTION_NAME = /^[A-Z]\w+:$/
+
   # usage
   FLAG       = /^[-][-]?(?<k>\w+)$/
   LITERAL    = /^(?<k>\w[\w.-]*:?)$/
@@ -70,5 +73,7 @@ module HelpParser
   MSG = lambda{|msg,*keys| "#{msg}:  #{keys.join(' ')}"}
   F2K = lambda{|f| f[1]=='-' ? f[2..((f.index('=')||0)-1)] : f[1]}
   RESERVED = lambda{|k| [USAGE,TYPES,EXCLUSIVE,INCLUSIVE].include?(k)} # reserved
-  REDTTY = lambda{|msg,out=$stderr| out.tty? ? out.puts("\033[0;31m#{msg}\033[0m"): out.puts(msg)}
+  REDTTY = lambda{|msg,out=$stderr|
+    out.tty? ? out.puts("\033[0;31m#{msg}\033[0m"): out.puts(msg)
+  }
 end

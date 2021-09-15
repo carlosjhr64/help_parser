@@ -4,7 +4,7 @@ module HelpParser
     help.each_line do |line|
       line.chomp!
       next if line==''
-      if line=~/^[A-Z]\w+:$/
+      if line=~SECTION_NAME
         name = line[0..-2].downcase
         specs[name] = []
       else
@@ -20,15 +20,18 @@ module HelpParser
           HelpParser.validate_usage_tokens(tokens) if validate
           specs[USAGE].push tokens
         when TYPES
-          raise HelpError, MSG[UNRECOGNIZED_TYPE,spec] if validate and not spec=~TYPE_DEF
+          if validate and not spec=~TYPE_DEF
+            raise HelpError, MSG[UNRECOGNIZED_TYPE,spec]
+          end
           specs[TYPES].push spec.split(CSV)
         when EXCLUSIVE,INCLUSIVE
-          raise HelpError, MSG[UNRECOGNIZED_X,spec] if validate and not spec=~X_DEF
+          if validate and not spec=~X_DEF
+            raise HelpError, MSG[UNRECOGNIZED_X,spec]
+          end
           specs[name].push spec.split(CSV)
         else
-          if validate and not [SHORT, LONG, SHORT_LONG, SHORT_LONG_DEFAULT].any?{|_|_=~spec}
-            raise HelpError, MSG[UNRECOGNIZED_OPTION,spec]
-          end
+          raise HelpError, MSG[UNRECOGNIZED_OPTION,spec] if validate and
+              not [SHORT, LONG, SHORT_LONG, SHORT_LONG_DEFAULT].any?{|_|_=~spec}
           specs[name].push spec.split(CSV)
         end
       end

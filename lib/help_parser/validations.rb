@@ -35,7 +35,9 @@ module HelpParser
         seen = {}
         a.each do |xs|
           k = xs.sort.join(' ').to_sym
-          raise HelpError, MSG[DUP_X,k] if seen[k] or not xs.length==xs.uniq.length
+          if seen[k] or not xs.length==xs.uniq.length
+            raise HelpError, MSG[DUP_X,k]
+          end
           seen[k] = true
           xs.each do |x|
             raise HelpError, MSG[UNSEEN_FLAG, x] unless flags.include?(x)
@@ -82,7 +84,9 @@ module HelpParser
         long = long_type[2..(i-1)]
         type = long_type[(i+1)..-1]
         regex = t2r[type]
-        raise HelpError, MSG[BAD_DEFAULT,long,default,type,regex.inspect] unless regex=~default
+        unless regex=~default
+          raise HelpError, MSG[BAD_DEFAULT,long,default,type,regex.inspect]
+        end
       end
     end
   end
