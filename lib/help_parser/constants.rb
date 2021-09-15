@@ -1,4 +1,5 @@
 module HelpParser
+  # reserved name
   USAGE = 'usage'
   TYPES = 'types'
   EXCLUSIVE = 'exclusive'

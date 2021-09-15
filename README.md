@@ -94,9 +94,10 @@ OPTIONS.arg?.class           #=> FalseClass
 
 ## Features
 
-* $DEBUG=true on --debug
-* $VERBOSE=true on --verbose
+* `$DEBUG=true` on --debug
+* `$VERBOSE=true` on --verbose
 * -h and --help simultaneously will check help string for errors
+* `HelpParser::REDTTY[msg]` will red color output `msg` to `STDERR`.
 
 ## LICENSE:
 
