@@ -1,6 +1,6 @@
 # Help Parser VII: Deader
 
-* [VERSION 7.0.210121](https://github.com/carlosjhr64/Ruby-HelpParser/releases)
+* [VERSION 8.0.210915](https://github.com/carlosjhr64/Ruby-HelpParser/releases)
 * [github](https://www.github.com/carlosjhr64/Ruby-HelpParser)
 * [rubygems](https://rubygems.org/gems/help_parser)
 
