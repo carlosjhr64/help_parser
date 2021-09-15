@@ -1,7 +1,8 @@
 module HelpParser
   def self.k2t(specs)
     k2t = NoDupHash.new
-    tokens = specs.select{|k,v| !(k==TYPES)}.values.flatten.select{|v|v.include?('=')}
+    tokens = specs.select{|k,v| !(k==TYPES)}.values.flatten
+      .select{|v|v.include?('=')}
     tokens.each do |token|
       if match = VARIABLE.match(token) || LONG.match(token)
         name, type = match['k'], match['t']
