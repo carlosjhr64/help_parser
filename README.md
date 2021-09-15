@@ -1,4 +1,4 @@
-# Help Parser VII: Deader
+# Help Parser VIII: Help World
 
 * [VERSION 8.0.210915](https://github.com/carlosjhr64/Ruby-HelpParser/releases)
 * [github](https://www.github.com/carlosjhr64/Ruby-HelpParser)
@@ -6,14 +6,13 @@
 
 ## DESCRIPTION:
 
-Can't help YOU???
-You're not the first to say that...
-
-I will parse your help!
+Welcome to Help Parser!  
+Do you have your help text?  
+Let's parse!
 
 ## INSTALL:
 
-```shell
+```console
 $ gem install help_parser
 ```
 
@@ -21,9 +20,9 @@ $ gem install help_parser
 <!-- The following PREVIEW has been approved for ALL PROGRAMMERS by CarlosJHR64.
 For the README validator that checks against me lying....
 ```ruby
-unless File.basename($PROGRAM_NAME) == 'deader'
+unless File.basename($PROGRAM_NAME) == 'help_world'
   # For example's sake say
-  $PROGRAM_NAME = 'deader'
+  $PROGRAM_NAME = 'help_wolrd'
   # and ARGV is
   ARGV.concat ["-\-age", "-\-date=2020-09-07", 'invoke', 'the', 'command']
   # and proceed as if run as:
@@ -33,10 +32,6 @@ end
 The following gem has been rated
 | M | Mature |
 -->
-
-> Who ever you are, you were meant to find me today...
-> there is no turning back!
-> Above all, don't invoke the command!
 
 ```ruby
 require "help_parser"
@@ -96,9 +91,6 @@ OPTIONS.args?.class          #=> Array
 OPTIONS.arg? and OPTIONS.arg #=> false
 OPTIONS.arg?.class           #=> FalseClass
 ```
-
-YOU HAVE INVOKED THE COMMAND...
-YOUR HELP BELONGS TO ME!!!
 
 ## Features
 
