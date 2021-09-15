@@ -21,16 +21,6 @@ module HelpParser
   rescue HelpParserException => exception
     exception.exit
   end
-
-  def self.run(
-    version = nil,
-    help    = nil,
-    argv    = [File.basename($0)]+ARGV)
-    options = Options.new(version, help, argv)
-    yield options
-  rescue HelpParserException => exception
-    exception.exit
-  end
 end
 
 # Requires:

@@ -20,9 +20,9 @@ $ gem install help_parser
 <!-- The following PREVIEW has been approved for ALL PROGRAMMERS by CarlosJHR64.
 For the README validator that checks against me lying....
 ```ruby
-unless File.basename($PROGRAM_NAME) == 'help_world'
+unless File.basename($PROGRAM_NAME) == 'deader'
   # For example's sake say
-  $PROGRAM_NAME = 'help_wolrd'
+  $PROGRAM_NAME = 'deader'
   # and ARGV is
   ARGV.concat ["-\-age", "-\-date=2020-09-07", 'invoke', 'the', 'command']
   # and proceed as if run as:

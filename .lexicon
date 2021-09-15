@@ -145,7 +145,6 @@ require_relative
 RESERVED
 rindex
 Ruby30
-run
 s
 scan
 second

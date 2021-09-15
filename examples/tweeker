@@ -37,12 +37,11 @@ HelpParser.strings(:args) # for options.args   : Array(String)
 HelpParser.float(:value)  # for options.value  : Float
 HelpParser.int?(:number)  # for options.number : Int32 | Nil
 
-HelpParser.run(VERSION, HELP, ["tweeker"]+ARGV) do |options|
-  hash = options._hash
-  pp hash # to inspect the hash
+options = HelpParser[VERSION, HELP, ["tweeker"]+ARGV]
+hash = options._hash
+pp hash # to inspect the hash
 
-  pp options.name  if hash["name"]
-  pp options.args  if hash["args"]
-  pp options.value if hash["value"]
-  pp options.number?
-end
+pp options.name  if hash["name"]
+pp options.args  if hash["args"]
+pp options.value if hash["value"]
+pp options.number?
