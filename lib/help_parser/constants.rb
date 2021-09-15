@@ -20,7 +20,8 @@ module HelpParser
 
   # spec -w,? --w+
   SHORT_LONG         = /^[-](?<s>\w),?\s+[-][-](?<k>\w+)$/
-  SHORT_LONG_DEFAULT = /^[-](?<s>\w),?\s+[-][-](?<k>\w+)(=(?<t>[A-Z]+))?,?\s+(?<d>[^-\s]\S*)$/
+  SHORT_LONG_DEFAULT =
+    /^[-](?<s>\w),?\s+[-][-](?<k>\w+)(=(?<t>[A-Z]+))?,?\s+(?<d>[^-\s]\S*)$/
 
   # spec W+ /~/
   TYPE_DEF = /^(?<t>[A-Z]+),?\s+\/(?<r>\S+)\/$/
@@ -72,7 +73,7 @@ module HelpParser
   # lambda utilities
   MSG = lambda{|msg,*keys| "#{msg}:  #{keys.join(' ')}"}
   F2K = lambda{|f| f[1]=='-' ? f[2..((f.index('=')||0)-1)] : f[1]}
-  RESERVED = lambda{|k| [USAGE,TYPES,EXCLUSIVE,INCLUSIVE].include?(k)} # reserved
+  RESERVED = lambda{|k| [USAGE,TYPES,EXCLUSIVE,INCLUSIVE].include?(k)}
   REDTTY = lambda{|msg,out=$stderr|
     out.tty? ? out.puts("\033[0;31m#{msg}\033[0m"): out.puts(msg)
   }
