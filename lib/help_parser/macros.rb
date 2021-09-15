@@ -20,7 +20,8 @@ module HelpParser
   class Options
     def #{name}?
       s = @hash['#{name}']
-      raise UsageError, MSG[NOT_STRING,'#{name}'] unless s.nil? || s.is_a?(String)
+      raise UsageError, MSG[NOT_STRING,'#{name}'] unless s.nil? ||
+        s.is_a?(String)
       return s
     end
   end
@@ -50,7 +51,8 @@ module HelpParser
   class Options
     def #{name}?
       a = @hash['#{name}']
-      raise UsageError, MSG[NOT_STRINGS,'#{name}'] unless a.nil? || a.is_a?(Array)
+      raise UsageError, MSG[NOT_STRINGS,'#{name}'] unless a.nil? ||
+        a.is_a?(Array)
       return a
     end
   end

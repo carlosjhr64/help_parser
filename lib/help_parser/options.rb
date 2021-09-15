@@ -23,7 +23,9 @@ module HelpParser
         if inclusive=specs[INCLUSIVE]
           inclusive.each do |i|
             count = @hash.keys.count{|k|i.include?(k)}
-            raise HelpParser::UsageError, MSG[INCLUSIVE_KEYS,*i] unless count==0 or count==i.length
+            unless count==0 or count==i.length
+              raise HelpParser::UsageError, MSG[INCLUSIVE_KEYS,*i]
+            end
           end
         end
       end
