@@ -102,7 +102,7 @@ module HelpParser
     def #{name}
       f = @hash['#{name}']
       raise unless f.is_a?(Array)
-      f.map{|_|_.to_f}
+      f.map{_1.to_f}
     rescue
       raise UsageError, MSG[#{NOT_FLOATS},'#{name}']
     end
@@ -120,7 +120,7 @@ module HelpParser
       f = @hash['#{name}']
       return nil unless f
       raise unless f.is_a?(Array)
-      f.map{|_|_.to_f}
+      f.map{_1.to_f}
     rescue
       raise UsageError, MSG[NOT_FLOATS,'#{name}']
     end
@@ -171,7 +171,7 @@ module HelpParser
     def #{name}
       f = @hash['#{name}']
       raise unless f.is_a?(Array)
-      f.map{|_|_.to_i}
+      f.map{_1.to_i}
     rescue
       raise UsageError, MSG[NOT_INTEGERS,'#{name}']
     end
@@ -189,7 +189,7 @@ module HelpParser
       f = @hash['#{name}']
       return nil unless f
       raise unless f.is_a?(Array)
-      f.map{|_|_.to_i}
+      f.map{_1.to_i}
     rescue
       raise UsageError, MSG[NOT_INTEGERS,'#{name}']
     end

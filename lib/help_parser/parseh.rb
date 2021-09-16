@@ -31,7 +31,7 @@ module HelpParser
           specs[name].push spec.split(CSV)
         else
           raise HelpError, MSG[UNRECOGNIZED_OPTION,spec] if validate and
-              not [SHORT, LONG, SHORT_LONG, SHORT_LONG_DEFAULT].any?{|_|_=~spec}
+              not [SHORT, LONG, SHORT_LONG, SHORT_LONG_DEFAULT].any?{_1=~spec}
           specs[name].push spec.split(CSV)
         end
       end

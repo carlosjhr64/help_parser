@@ -8,8 +8,8 @@ module HelpParser
       end
       if help
         h = [H, HLP]
-        if h.any?{|_|@hash.key?_}
-          HelpParser.parseh(help, validate: true)  if h.all?{|_|@hash.key?_}
+        if h.any?{@hash.key? _1}
+          HelpParser.parseh(help, validate: true)  if h.all?{@hash.key? _1}
           raise HelpException, help
         end
         specs = HelpParser.parseh(help)

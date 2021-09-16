@@ -30,7 +30,7 @@ module HelpParser
       dict = {}
       @specs.each do |k,v|
         next if RESERVED.include? k
-        v.flatten.map{|_|_.scan(/\w+/).first}.each{|_|dict[_]=true}
+        v.flatten.map{_1.scan(/\w+/).first}.each{dict[_1]=true}
       end
       typos = @hash.keys.select{|k|k.is_a? String and not dict[k]}
       raise UsageError, MSG[UNRECOGNIZED, typos] unless typos.empty?
