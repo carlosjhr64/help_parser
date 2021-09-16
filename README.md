@@ -20,11 +20,11 @@ $ gem install help_parser
 <!-- The following PREVIEW has been approved for ALL PROGRAMMERS by CarlosJHR64.
 For the README validator that checks against me lying....
 ```ruby
-unless File.basename($PROGRAM_NAME) == 'deader'
+unless File.basename($PROGRAM_NAME) == 'party'
   # For example's sake say
-  $PROGRAM_NAME = 'deader'
+  $PROGRAM_NAME = 'party'
   # and ARGV is
-  ARGV.concat ["-\-age", "-\-date=2020-09-07", 'invoke', 'the', 'command']
+  ARGV.concat ["-\-age", "-\-date=2020-09-07", 'touch', 'that']
   # and proceed as if run as:
   #     awesome -\-name=Doe -\-value  a b c
 end
@@ -38,21 +38,24 @@ require "help_parser"
 
 HELP = <<-HELP
 # <= Hash here, parser skips
-# HelpParser: Deader command example #
+# HelpParser: Party command example #
 Usage:
-  deader :options+ [<args>+]
-  deader [:alternate] <arg=FLOAT>
-  deader literal <arg1=WORD> <arg2=WORD> <arg3=WORD>
+  party :options+ [<args>+]
+  party [:alternate] <arg=FLOAT>
+  party literal <arg1=WORD> <arg2=WORD>
 Options:
   -v --version       \t Give version and quit
   -h --help          \t Give help and quit
   -s --long          \t Short long synonyms
-  --command invoke   \t Defaulted
+  --touch that       \t Defaulted
   --date=DATE        \t Typed
   --age=INTEGER 80   \t Typed and Defaulted
   -a --all=YN y      \t Short, long, typed, and defaulted
   --to_be
   --not_to_be
+  --rain
+  --water
+  --wet
 Exclusive:
   to_be not_to_be    \t Tells parser these are mutually exclusive keys
 Inclusive:
@@ -70,7 +73,7 @@ Types:
   YN      /^[YNyn]$/
 # <= Hash here, parser breaks out
 # Notes #
-Don't invoke the command.
+I wouldn't touch that!
 HELP
 
 VERSION = "1.2.3"
@@ -85,10 +88,10 @@ HelpParser.string(:arg1, :arg2, :arg3) # for OPTIONS.arg1, etc : String
 #=> [:arg1, :arg2, :arg3]
 
 ## If run as:
-##   deader --age --date=2020-09-07 invoke the command
+##   party --age --date=2020-09-07 touch that
 OPTIONS.age?                 #=> 80
 OPTIONS.age?.class           #=> Integer
-OPTIONS.args?                #=> ["invoke", "the", "command"]
+OPTIONS.args?                #=> ["touch", "that"]
 OPTIONS.args?.class          #=> Array
 OPTIONS.arg? and OPTIONS.arg #=> false
 OPTIONS.arg?.class           #=> FalseClass
