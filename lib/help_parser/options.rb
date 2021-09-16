@@ -2,12 +2,12 @@ module HelpParser
   class Options
     def initialize(version, help, argv)
       @hash = HelpParser.parsea(argv)
-      if version && (@hash.has_key?('v') || @hash.has_key?('version'))
+      if version && (@hash.has_key?(V) || @hash.has_key?(VSN))
         # -v or --version
         raise VersionException, version
       end
       if help
-        h = ['h', 'help']
+        h = [H, HLP]
         if h.any?{|_|@hash.key?_}
           HelpParser.parseh(help, validate: true)  if h.all?{|_|@hash.key?_}
           raise HelpException, help
@@ -36,8 +36,8 @@ module HelpParser
           end
         end
       end
-      $VERBOSE = true if @hash['verbose']==true
-      $DEBUG = true if @hash['debug']==true
+      $VERBOSE = true if @hash[VRBS]==true
+      $DEBUG = true if @hash[DBG]==true
     end
 
     def _hash

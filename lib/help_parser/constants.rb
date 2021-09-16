@@ -1,4 +1,8 @@
 module HelpParser
+  V,VSN = 'v','version'
+  H,HLP = 'h','help'
+  VRBS,DBG = 'verbose','debug'
+
   # reserved name
   USAGE = 'usage'
   TYPES = 'types'

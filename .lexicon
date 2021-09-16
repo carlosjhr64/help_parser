@@ -26,6 +26,7 @@ CONDITIONAL
 CONDITIONAL_KEYS
 count
 CSV
+DBG
 default
 delete
 diagnose
@@ -64,6 +65,7 @@ float
 floats
 group
 h
+H
 _hash
 hash
 Hash
@@ -73,6 +75,7 @@ HelpError
 HelpException
 HelpParser
 HelpParserException
+HLP
 hsh
 i
 include
@@ -206,6 +209,7 @@ UsageError
 usage_specs
 usage_tokens
 v
+V
 validate
 Validate
 value
@@ -215,6 +219,8 @@ VARIABLE
 version
 VERSION
 VersionException
+VRBS
+VSN
 word
 words
 x

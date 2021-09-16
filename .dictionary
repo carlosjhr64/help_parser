@@ -11,6 +11,7 @@ cmd
 concat
 CONFIG
 CSV
+DBG
 downcase
 DUP
 elsif
@@ -21,6 +22,7 @@ HelpError
 HelpException
 HelpParser
 HelpParserException
+HLP
 hsh
 https
 init
@@ -50,6 +52,8 @@ uniq
 UsageError
 validator
 VersionException
+VRBS
+VSN
 wut
 www
 xs
