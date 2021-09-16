@@ -135,6 +135,7 @@ options
 Options
 option_specs
 out
+p
 pad
 pair
 parsea
@@ -176,6 +177,7 @@ string
 String
 strings
 strip
+t
 t2r
 token
 tokens

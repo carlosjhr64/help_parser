@@ -21,7 +21,7 @@ module Validate
               token.match(VARIABLE) ||
               token.match(FLAG_GROUP)
       raise HelpError, MSG[UNRECOGNIZED_TOKEN,token] unless match
-      words.push match['k'] # key
+      words.push match[:k] # key
     end
     words.each_with_index do |word,i|
       raise HelpError, MSG[DUP_WORD,word] unless i==words.rindex(word)
@@ -54,7 +54,7 @@ module Validate
     unless specs_usage.nil?
       specs_usage.flatten.each do |token|
         if match = token.match(FLAG_GROUP)
-          key = match['k']
+          key = match[:k]
           raise HelpError, MSG[UNDEFINED_SECTION,key] unless specs[key]
           group.push(key)
         end

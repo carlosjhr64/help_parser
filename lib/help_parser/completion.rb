@@ -111,7 +111,7 @@ module HelpParser
           end
           next
         elsif m=FLAG_GROUP.match(token)
-          group,plus = m['k'],m['p']
+          group,plus = m[:k],m[:p]
           key = keys[i]
           raise NoMatch if key.nil? || key.is_a?(Integer)
           list = @specs[group].flatten.select{|f|f[0]=='-'}.map{|f| F2K[f]}
@@ -126,7 +126,7 @@ module HelpParser
         elsif m=VARIABLE.match(token)
           key = keys[i]
           raise NoMatch unless key.is_a?(Integer)
-          variable,plus = m['k'],m['p']
+          variable,plus = m[:k],m[:p]
           if plus.nil?
             @cache[variable] = @hash[key]
           else

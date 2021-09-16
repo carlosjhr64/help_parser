@@ -5,7 +5,7 @@ module HelpParser
       .select{|v|v.include?('=')}
     tokens.each do |token|
       if match = VARIABLE.match(token) || LONG.match(token)
-        name, type = match['k'], match['t']
+        name, type = match[:k], match[:t]
         if _=k2t[name]
           raise HelpError, MSG[INCONSISTENT,name,type,_]  unless type==_
         else
