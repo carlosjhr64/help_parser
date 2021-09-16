@@ -1,5 +1,6 @@
 module HelpParser
-  def self.validate_line_chars(chars)
+module Validate
+  def self.line_chars(chars)
     count = 0
     chars.each do |c|
       if c=='['
@@ -12,7 +13,7 @@ module HelpParser
     raise HelpError, MSG[UNBALANCED,chars.join] unless count==0
   end
 
-  def self.validate_usage_tokens(tokens)
+  def self.usage_tokens(tokens)
     words = []
     tokens.flatten.each do |token|
       match = token.match(FLAG)     ||
@@ -27,7 +28,7 @@ module HelpParser
     end
   end
 
-  def self.validate_usage_specs(specs)
+  def self.usage_specs(specs)
     option_specs = specs.select{|a,b| !RESERVED[a]}
     flags = option_specs.values.flatten.select{|f|f[0]=='-'}.map{|f| F2K[f]}
     [EXCLUSIVE,INCLUSIVE].each do |k|
@@ -66,7 +67,7 @@ module HelpParser
     end
   end
 
-  def self.validate_k2t2r(specs, k2t, t2r)
+  def self.k2t2r(specs, k2t, t2r)
     a,b = k2t.values.uniq.sort,t2r.keys.sort
     unless a==b
       c = (a+b).uniq.select{|x|!(a.include?(x) && b.include?(x))}
@@ -90,4 +91,5 @@ module HelpParser
       end
     end
   end
+end
 end

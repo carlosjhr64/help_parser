@@ -3,6 +3,7 @@ args
 argv
 ARGV
 ArgvHash
+autoload
 basename
 carlosjhr
 CarlosJHR

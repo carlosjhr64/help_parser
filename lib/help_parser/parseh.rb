@@ -15,9 +15,9 @@ module HelpParser
         raise HelpError, EXTRANEOUS_SPACES if validate and spec==''
         case name
         when USAGE
-          HelpParser.validate_line_chars(spec.chars) if validate
+          Validate.line_chars(spec.chars) if validate
           tokens = HelpParser.parseu(spec.chars)
-          HelpParser.validate_usage_tokens(tokens) if validate
+          Validate.usage_tokens(tokens) if validate
           specs[USAGE].push tokens
         when TYPES
           if validate and not spec=~TYPE_DEF
@@ -37,10 +37,10 @@ module HelpParser
       end
     end
     if validate
-      HelpParser.validate_usage_specs(specs)
+      Validate.usage_specs(specs)
       if t2r = HelpParser.t2r(specs)
         k2t = HelpParser.k2t(specs)
-        HelpParser.validate_k2t2r(specs, k2t, t2r)
+        Validate.k2t2r(specs, k2t, t2r)
       end
     end
     return specs
