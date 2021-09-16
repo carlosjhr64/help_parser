@@ -29,7 +29,7 @@ module Validate
   end
 
   def self.usage_specs(specs)
-    option_specs = specs.select{|a,b| !RESERVED[a]}
+    option_specs = specs.select{|a,b| not RESERVED.include? a}
     flags = option_specs.values.flatten.select{|f|f[0]=='-'}.map{|f| F2K[f]}
     FLAG_CLUMPS.each do |k|
       if a=specs[k]
@@ -62,7 +62,7 @@ module Validate
     end
     specs.each do |key,tokens|
       raise HelpError, MSG[MISSING_CASES,key] unless tokens.size>0
-      next if specs_usage.nil? or RESERVED[key]
+      next if specs_usage.nil? or RESERVED.include? key
       raise HelpError, MSG[MISSING_USAGE,key] unless group.include?(key)
     end
   end

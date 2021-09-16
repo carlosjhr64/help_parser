@@ -29,7 +29,7 @@ module HelpParser
     def diagnose
       dict = {}
       @specs.each do |k,v|
-        next if RESERVED[k]
+        next if RESERVED.include? k
         v.flatten.map{|_|_.scan(/\w+/).first}.each{|_|dict[_]=true}
       end
       typos = @hash.keys.select{|k|k.is_a? String and not dict[k]}

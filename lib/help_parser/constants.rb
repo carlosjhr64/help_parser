@@ -10,6 +10,7 @@ module HelpParser
   INCLUSIVE = 'inclusive'
   CONDITIONAL = 'conditional'
   FLAG_CLUMPS = [EXCLUSIVE,INCLUSIVE,CONDITIONAL]
+  RESERVED = [USAGE,TYPES,EXCLUSIVE,INCLUSIVE,CONDITIONAL]
 
   # sections
   SECTION_NAME = /^[A-Z]\w+:$/
@@ -80,7 +81,6 @@ module HelpParser
   # lambda utilities
   MSG = lambda{|msg,*keys| "#{msg}:  #{keys.join(' ')}"}
   F2K = lambda{|f| f[1]=='-' ? f[2..((f.index('=')||0)-1)] : f[1]}
-  RESERVED = lambda{|k| [USAGE,TYPES,EXCLUSIVE,INCLUSIVE,CONDITIONAL].include?(k)}
   REDTTY = lambda{|msg,out=$stderr|
     out.tty? ? out.puts("\033[0;31m#{msg}\033[0m"): out.puts(msg)
   }
