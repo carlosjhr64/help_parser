@@ -16,13 +16,13 @@ module HelpParser
         Completion.new(@hash, specs)
         if exclusive=specs[EXCLUSIVE]
           exclusive.each do |x|
-            count = @hash.keys.count{|k|x.include?(k)}
+            count = x.count{@hash.key? _1}
             raise HelpParser::UsageError, MSG[EXCLUSIVE_KEYS,*x] if count > 1
           end
         end
         if inclusive=specs[INCLUSIVE]
           inclusive.each do |i|
-            count = @hash.keys.count{|k|i.include?(k)}
+            count = i.count{@hash.key? _1}
             unless count==0 or count==i.length
               raise HelpParser::UsageError, MSG[INCLUSIVE_KEYS,*i]
             end
