@@ -24,7 +24,7 @@ module HelpParser
             raise HelpError, MSG[UNRECOGNIZED_TYPE,spec]
           end
           specs[TYPES].push spec.split(CSV)
-        when EXCLUSIVE,INCLUSIVE,CONDITIONAL
+        when *FLAG_CLUMPS # EXCLUSIVE,INCLUSIVE,CONDITIONAL,...
           if validate and not spec=~X_DEF
             raise HelpError, MSG[UNRECOGNIZED_X,spec]
           end

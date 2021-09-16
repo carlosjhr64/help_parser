@@ -5,6 +5,7 @@ module HelpParser
   EXCLUSIVE = 'exclusive'
   INCLUSIVE = 'inclusive'
   CONDITIONAL = 'conditional'
+  FLAG_CLUMPS = [EXCLUSIVE,INCLUSIVE,CONDITIONAL]
 
   # sections
   SECTION_NAME = /^[A-Z]\w+:$/

@@ -31,7 +31,7 @@ module Validate
   def self.usage_specs(specs)
     option_specs = specs.select{|a,b| !RESERVED[a]}
     flags = option_specs.values.flatten.select{|f|f[0]=='-'}.map{|f| F2K[f]}
-    [EXCLUSIVE,INCLUSIVE,CONDITIONAL].each do |k|
+    FLAG_CLUMPS.each do |k|
       if a=specs[k]
         seen = {}
         a.each do |xs|
