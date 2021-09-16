@@ -57,6 +57,8 @@ Exclusive:
   to_be not_to_be    \t Tells parser these are mutually exclusive keys
 Inclusive:
   date age           \t Tells parser any of these must include all of these
+Conditional:
+  rain water wet     \t Tells parser if first then all
 Alternate:
   --invoke
   --wut

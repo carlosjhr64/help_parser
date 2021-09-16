@@ -28,6 +28,13 @@ module HelpParser
             end
           end
         end
+        if conditional=specs[CONDITIONAL]
+          conditional.each do |c|
+            if @hash.key? c[0] and not c.all?{@hash.key? _1}
+              raise HelpParser::UsageError, MSG[CONDITIONAL_KEYS,*c]
+            end
+          end
+        end
       end
       $VERBOSE = true if @hash['verbose']==true
       $DEBUG = true if @hash['debug']==true
