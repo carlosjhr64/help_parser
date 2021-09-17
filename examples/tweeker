@@ -38,7 +38,7 @@ HelpParser.float(:value)  # for options.value  : Float
 HelpParser.int?(:number)  # for options.number : Int32 | Nil
 
 options = HelpParser[VERSION, HELP, ["tweeker"]+ARGV]
-hash = options._hash
+hash = options.to_h
 pp hash # to inspect the hash
 
 pp options.name  if hash["name"]

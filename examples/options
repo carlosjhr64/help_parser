@@ -12,4 +12,4 @@ Options:
 HELP
 
 OPTIONS = HelpParser[nil, HELP]
-puts OPTIONS._hash.to_json
+puts OPTIONS.to_h.to_json

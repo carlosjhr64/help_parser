@@ -40,7 +40,7 @@ module HelpParser
       $DEBUG = true if @hash[DBG]==true
     end
 
-    def _hash
+    def to_h
       @hash
     end
 
