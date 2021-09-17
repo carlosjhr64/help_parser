@@ -1,7 +1,7 @@
 # Help Parser VIII: Helpland
 
-* [VERSION 8.0.210917](https://github.com/carlosjhr64/Ruby-HelpParser/releases)
-* [github](https://www.github.com/carlosjhr64/Ruby-HelpParser)
+* [VERSION 8.0.210917](https://github.com/carlosjhr64/help_parser/releases)
+* [github](https://www.github.com/carlosjhr64/help_parser)
 * [rubygems](https://rubygems.org/gems/help_parser)
 
 ## DESCRIPTION:
