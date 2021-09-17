@@ -3,24 +3,24 @@ Gem::Specification.new do |s|
   s.name     = 'help_parser'
   s.version  = '8.0.210917'
 
-  s.homepage = 'https://github.com/carlosjhr64/Ruby-HelpParser'
+  s.homepage = 'https://github.com/carlosjhr64/help_parser'
 
-  s.author   = 'carlosjhr64'
+  s.author   = 'CarlosJHR64'
   s.email    = 'carlosjhr64@gmail.com'
 
   s.date     = '2021-09-17'
   s.licenses = ['MIT']
 
   s.description = <<DESCRIPTION
-Can't help YOU???
-You're not the first to say that...
-
-I will parse your help!
+Welcome to Help Parser!  
+Do you have your help text?  
+Let's parse!
 DESCRIPTION
 
   s.summary = <<SUMMARY
-Can't help YOU???
-You're not the first to say that...
+Welcome to Help Parser!  
+Do you have your help text?  
+Let's parse!
 SUMMARY
 
   s.require_paths = ['lib']
@@ -38,7 +38,7 @@ lib/help_parser/options.rb
 lib/help_parser/parsea.rb
 lib/help_parser/parseh.rb
 lib/help_parser/parseu.rb
-lib/help_parser/validations.rb
+lib/help_parser/validate.rb
   )
 
   s.requirements << 'ruby: ruby 3.0.2p107 (2021-07-07 revision 0db68f0233) [x86_64-linux]'
