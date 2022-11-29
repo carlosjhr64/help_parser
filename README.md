@@ -1,6 +1,6 @@
 # Help Parser VIII: Helpland
 
-* [VERSION 8.0.210917](https://github.com/carlosjhr64/help_parser/releases)
+* [VERSION 8.0.221129](https://github.com/carlosjhr64/help_parser/releases)
 * [github](https://www.github.com/carlosjhr64/help_parser)
 * [rubygems](https://rubygems.org/gems/help_parser)
 
@@ -108,7 +108,7 @@ OPTIONS.arg?.class           #=> FalseClass
 
 (The MIT License)
 
-Copyright (c) 2021 CarlosJHR64
+Copyright (c) 2022 CarlosJHR64
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the

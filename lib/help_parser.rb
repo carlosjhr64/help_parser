@@ -10,7 +10,7 @@ require_relative 'help_parser/options'
 require_relative 'help_parser/macros'
 
 module HelpParser
-  VERSION = '8.0.210917'
+  VERSION = '8.0.221129'
   autoload :Validate, 'help_parser/validate'
 
   def self.[](

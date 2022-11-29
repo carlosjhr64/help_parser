@@ -155,7 +155,7 @@ Regexp
 require_relative
 RESERVED
 rindex
-Ruby30
+Ruby31
 s
 scan
 second

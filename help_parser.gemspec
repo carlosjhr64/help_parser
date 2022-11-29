@@ -1,14 +1,14 @@
 Gem::Specification.new do |s|
 
   s.name     = 'help_parser'
-  s.version  = '8.0.210917'
+  s.version  = '8.0.221129'
 
   s.homepage = 'https://github.com/carlosjhr64/help_parser'
 
   s.author   = 'CarlosJHR64'
   s.email    = 'carlosjhr64@gmail.com'
 
-  s.date     = '2021-09-17'
+  s.date     = '2022-11-29'
   s.licenses = ['MIT']
 
   s.description = <<DESCRIPTION
@@ -41,6 +41,6 @@ lib/help_parser/parseu.rb
 lib/help_parser/validate.rb
   )
 
-  s.requirements << 'ruby: ruby 3.0.2p107 (2021-07-07 revision 0db68f0233) [x86_64-linux]'
+  s.requirements << 'ruby: ruby 3.1.2p20 (2022-04-12 revision 4491bb740a) [aarch64-linux]'
 
 end
