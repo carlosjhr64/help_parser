@@ -66,7 +66,7 @@ module HelpParser
     def pad
       # Synonyms and defaults:
       @specs.each do |section,options|
-        next if section==USAGE || section==TYPES
+        next if RESERVED.any?{section==_1}
         options.each do |words|
           next unless words.size>1
           first,second,default = words[0],words[1],words[2]
@@ -95,6 +95,8 @@ module HelpParser
                 @hash[long] = default
               end
             end
+          else
+            raise SoftwareError, MSG[UNEXPECTED, words]
           end
         end
       end
