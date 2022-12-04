@@ -112,3 +112,12 @@ Feature: Testing examples/options
     * Then stderr is ""
     * Then w maps to true
     * Then wut => OK
+
+
+  Scenario: -n
+    * Given option "-n"
+    * When we run command
+    * Then exit status is "0"
+    * Then stderr is ""
+    * Then n maps to true
+    * Then one => -1
