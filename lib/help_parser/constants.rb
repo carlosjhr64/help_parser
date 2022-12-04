@@ -28,7 +28,7 @@ module HelpParser
   # spec -w,? --w+
   SHORT_LONG         = /^[-](?<s>\w),?\s+[-][-](?<k>\w+)$/
   SHORT_LONG_DEFAULT =
-    /^[-](?<s>\w),?\s+[-][-](?<k>\w+)(=(?<t>[A-Z]+))?,?\s+(?<d>[^-\s]\S*)$/
+    /^[-](?<s>\w),?\s+[-][-](?<k>\w+)(=(?<t>[A-Z]+))?,?\s+(?<d>\S*)$/
 
   # spec W+ /~/
   TYPE_DEF = /^(?<t>[A-Z]+),?\s+\/(?<r>\S+)\/$/
