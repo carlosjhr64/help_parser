@@ -13,7 +13,7 @@ module HelpParser
   RESERVED = [USAGE,TYPES,EXCLUSIVE,INCLUSIVE,CONDITIONAL]
 
   # sections
-  SECTION_NAME = /^[A-Z]\w+:$/
+  SECTION_NAME = /^(?<name>[A-Z]\w+):$/
 
   # usage
   FLAG       = /^[-][-]?(?<k>\w+)$/

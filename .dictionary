@@ -37,6 +37,7 @@ hsh
 init
 int
 ints
+md
 msg
 MSG
 mthd

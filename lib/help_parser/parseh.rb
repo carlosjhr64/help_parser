@@ -4,8 +4,8 @@ module HelpParser
     help.each_line do |line|
       line.chomp!
       next if line==''
-      if line=~SECTION_NAME
-        name = line[0..-2].downcase
+      if md = SECTION_NAME.match(line)
+        name = md['name'].downcase
         specs[name] = []
       else
         next if name==''

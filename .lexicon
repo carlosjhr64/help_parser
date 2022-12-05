@@ -112,6 +112,7 @@ map
 match
 matches
 MATCH_USAGE
+md
 message
 method_missing
 MISSING_CASES
