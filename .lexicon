@@ -64,8 +64,6 @@ flatten
 float
 floats
 group
-h
-H
 hash
 Hash
 has_key
@@ -210,7 +208,6 @@ UsageError
 usage_specs
 usage_tokens
 v
-V
 validate
 Validate
 value
