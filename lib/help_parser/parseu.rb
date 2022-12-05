@@ -1,4 +1,8 @@
 module HelpParser
+  # Chars := String.split(/\t/,2).first.strip.chars
+  # Token := String=~/^[^ \[\]]$/
+  # Note that emergent Token is String=~/^[^\s\[\]]$/
+  # Tokens := Array(Token|Tokens)
   def self.parseu(chars)
     tokens,token = [],''
     while c = chars.shift
