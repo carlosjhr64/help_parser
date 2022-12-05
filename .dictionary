@@ -51,6 +51,7 @@ parseh
 parseu
 REDTTY
 regex
+regexp
 Regexp
 rindex
 rubygems

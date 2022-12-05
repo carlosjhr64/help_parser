@@ -66,9 +66,7 @@ module HelpParser
       code = <<-CODE
   class Options
     def #{name}
-      f = @hash['#{name}']
-      raise if f.nil?
-      f.to_f
+      @hash['#{name}']&.to_f or raise
     rescue
       raise UsageError, MSG[NOT_FLOAT,'#{name}']
     end
@@ -83,9 +81,7 @@ module HelpParser
       code = <<-CODE
   class Options
     def #{name}?
-      f = @hash['#{name}']
-      f = f.to_f if f
-      return f
+      @hash['#{name}']&.to_f
     rescue
       raise UsageError, MSG[NOT_FLOAT,'#{name}']
     end
@@ -100,9 +96,7 @@ module HelpParser
       code = <<-CODE
   class Options
     def #{name}
-      f = @hash['#{name}']
-      raise unless f.is_a?(Array)
-      f.map{_1.to_f}
+      @hash['#{name}'].map{_1.to_f}
     rescue
       raise UsageError, MSG[#{NOT_FLOATS},'#{name}']
     end
@@ -117,10 +111,7 @@ module HelpParser
       code = <<-CODE
   class Options
     def #{name}?
-      f = @hash['#{name}']
-      return nil unless f
-      raise unless f.is_a?(Array)
-      f.map{_1.to_f}
+      @hash['#{name}']&.map{_1.to_f}
     rescue
       raise UsageError, MSG[NOT_FLOATS,'#{name}']
     end
@@ -135,9 +126,7 @@ module HelpParser
       code = <<-CODE
   class Options
     def #{name}
-      f = @hash['#{name}']
-      raise if f.nil?
-      f.to_i
+      @hash['#{name}']&.to_i or raise
     rescue
       raise UsageError, MSG[NOT_INTEGER,'#{name}']
     end
@@ -152,9 +141,7 @@ module HelpParser
       code = <<-CODE
   class Options
     def #{name}?
-      f = @hash['#{name}']
-      f = f.to_i if f
-      return f
+      @hash['#{name}']&.to_i
     rescue
       raise UsageError, MSG[NOT_INTEGER,'#{name}']
     end
@@ -169,9 +156,7 @@ module HelpParser
       code = <<-CODE
   class Options
     def #{name}
-      f = @hash['#{name}']
-      raise unless f.is_a?(Array)
-      f.map{_1.to_i}
+      @hash['#{name}'].map{_1.to_i}
     rescue
       raise UsageError, MSG[NOT_INTEGERS,'#{name}']
     end
@@ -186,10 +171,7 @@ module HelpParser
       code = <<-CODE
   class Options
     def #{name}?
-      f = @hash['#{name}']
-      return nil unless f
-      raise unless f.is_a?(Array)
-      f.map{_1.to_i}
+      @hash['#{name}']&.map{_1.to_i}
     rescue
       raise UsageError, MSG[NOT_INTEGERS,'#{name}']
     end
