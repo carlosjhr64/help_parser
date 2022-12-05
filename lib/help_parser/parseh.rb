@@ -5,7 +5,7 @@ module HelpParser
       line.chomp!
       next if line==''
       if md = SECTION_NAME.match(line)
-        name = md['name'].downcase
+        name = md[:name].downcase
         specs[name] = []
       else
         next if name==''
