@@ -12,6 +12,7 @@ autoload
 b
 BAD_DEFAULT
 BAD_REGEX
+balanced_brackets
 basename
 block
 c
@@ -29,6 +30,7 @@ CSV
 DBG
 default
 delete
+detect
 diagnose
 dict
 downcase
@@ -99,7 +101,6 @@ key_type
 lambda
 length
 line
-line_chars
 list
 LITERAL
 long
@@ -135,7 +136,6 @@ NOT_STRING
 NOT_STRINGS
 options
 Options
-option_specs
 out
 p
 pad

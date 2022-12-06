@@ -1,6 +1,6 @@
 module HelpParser
 module Validate
-  def self.line_chars(chars)
+  def self.balanced_brackets(chars)
     count = 0
     chars.each do |c|
       if c=='['
@@ -16,12 +16,9 @@ module Validate
   def self.usage_tokens(tokens)
     words = []
     tokens.flatten.each do |token|
-      match = token.match(FLAG)     ||
-              token.match(LITERAL)  ||
-              token.match(VARIABLE) ||
-              token.match(FLAG_GROUP)
-      raise HelpError, MSG[UNRECOGNIZED_TOKEN,token] unless match
-      words.push match[:k] # key
+      raise HelpError, MSG[UNRECOGNIZED_TOKEN,token] unless
+      [FLAG,LITERAL,VARIABLE,FLAG_GROUP]
+      .detect{_=token.match(_1) and words.push(_[:k])}
     end
     words.each_with_index do |word,i|
       raise HelpError, MSG[DUP_WORD,word] unless i==words.rindex(word)
@@ -29,8 +26,8 @@ module Validate
   end
 
   def self.usage_specs(specs)
-    option_specs = specs.select{|a,b| not RESERVED.include? a}
-    flags = option_specs.values.flatten.select{|f|f[0]=='-'}.map{|f| F2K[f]}
+    flags = specs.select{|a,b| not RESERVED.include? a}.values.flatten
+           .select{|f|f[0]=='-'}.map{|f| F2K[f]}
     FLAG_CLUMPS.each do |k|
       if a=specs[k]
         seen = {}

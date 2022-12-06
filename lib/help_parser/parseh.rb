@@ -15,7 +15,7 @@ module HelpParser
         raise HelpError, EXTRANEOUS_SPACES if validate and spec==''
         case name
         when USAGE
-          Validate.line_chars(spec.chars) if validate
+          Validate.balanced_brackets(spec.chars) if validate
           tokens = HelpParser.parseu(spec.chars)
           Validate.usage_tokens(tokens) if validate
           specs[USAGE].push tokens
