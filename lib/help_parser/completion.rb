@@ -28,9 +28,14 @@ module HelpParser
     # Diagnose user's usage.
     def diagnose
       dict = {}
-      @specs.each do |k,v|
-        next if RESERVED.include? k
-        v.flatten.map{_1.scan(/\w+/).first}.each{dict[_1]=true}
+      @specs.each do |section,list|
+        next if RESERVED.include? section
+        list.flatten.select{_1[0]=='-'}.each do |key_type|
+          key_type.scan(/\w+/) do |key|
+            dict[key]=true
+            break
+          end
+        end
       end
       typos = @hash.keys.select{|k|k.is_a? String and not dict[k]}
       raise UsageError, MSG[UNRECOGNIZED, typos] unless typos.empty?
