@@ -71,7 +71,7 @@ module Validate
       raise HelpError, MSG[UNCOMPLETED_TYPES,c.join(',')]
     end
     specs.each do |section,tokens|
-      next if section==USAGE || section==TYPES
+      next if RESERVED.include? section
       tokens.each do |words|
         next if words.size<2
         default = words[-1]
