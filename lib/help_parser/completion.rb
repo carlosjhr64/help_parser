@@ -120,13 +120,13 @@ module HelpParser
         elsif m=FLAG_GROUP.match(token)
           group,plus = m[:k],m[:p]
           key = keys[i]
-          raise NoMatch if key.nil? || key.is_a?(Integer)
+          raise NoMatch unless key.is_a? String
           list = @specs[group].flatten.select{|f|f[0]=='-'}.map{|f| F2K[f]}
           raise NoMatch unless list.include?(key)
           unless plus.nil?
             loop do
               key = keys[i+1]
-              break if key.nil? || key.is_a?(Integer) || !list.include?(key)
+              break unless key.is_a?(String) and list.include?(key)
               i+=1
             end
           end
