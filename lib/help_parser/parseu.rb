@@ -5,7 +5,7 @@ module HelpParser
   # Tokens := Array(Token|Tokens)
   def self.parseu(chars)
     tokens,token = [],''
-    while c = chars.shift
+    while (c=chars.shift)
       case c
       when ' ','[',']'
         unless token==''
@@ -19,6 +19,6 @@ module HelpParser
       end
     end
     tokens.push(token) unless token==''
-    return tokens
+    tokens
   end
 end

@@ -18,10 +18,10 @@ module HelpParser
     help    = nil,
     argv    = [File.basename($0)]+ARGV)
     Options.new(version, help, argv)
-  rescue HelpParserException => exception
-    exception.exit
+  rescue HelpParserException => e
+    e.exit
   end
 end
 
 # Requires:
-#`ruby`
+# `ruby`

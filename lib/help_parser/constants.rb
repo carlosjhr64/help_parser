@@ -1,6 +1,6 @@
 module HelpParser
-  VSN = ['v','version']
-  HLP = ['h','help']
+  VSN = %w[v version]
+  HLP = %w[h help]
   VRBS,DBG = 'verbose','debug'
 
   # reserved name
@@ -16,19 +16,19 @@ module HelpParser
   SECTION_NAME = /^(?<name>[A-Z]\w+):$/
 
   # usage
-  FLAG       = /^[-][-]?(?<k>\w+)$/
+  FLAG       = /^--?(?<k>\w+)$/
   LITERAL    = /^(?<k>\w[\w.-]*:?)$/
   VARIABLE   = /^<(?<k>\w+)(=(?<t>[A-Z]+))?>(?<p>[+])?$/
   FLAG_GROUP = /^:(?<k>\w+)(?<p>[+])?$/
 
   # spec --?w+
-  SHORT = /^[-](?<s>\w)$/
-  LONG  = /^[-][-](?<k>\w+)(=(?<t>[A-Z]+))?(,?\s+(?<d>[^-\s]\S*))?$/
+  SHORT = /^-(?<s>\w)$/
+  LONG  = /^--(?<k>\w+)(=(?<t>[A-Z]+))?(,?\s+(?<d>[^-\s]\S*))?$/
 
   # spec -w,? --w+
-  SHORT_LONG         = /^[-](?<s>\w),?\s+[-][-](?<k>\w+)$/
+  SHORT_LONG         = /^-(?<s>\w),?\s+--(?<k>\w+)$/
   SHORT_LONG_DEFAULT =
-    /^[-](?<s>\w),?\s+[-][-](?<k>\w+)(=(?<t>[A-Z]+))?,?\s+(?<d>\S*)$/
+    /^-(?<s>\w),?\s+--(?<k>\w+)(=(?<t>[A-Z]+))?,?\s+(?<d>\S*)$/
 
   # spec W+ /~/
   TYPE_DEF = /^(?<t>[A-Z]+),?\s+\/(?<r>\S+)\/$/
@@ -79,9 +79,9 @@ module HelpParser
   EXTRANEOUS_SPACES   = 'Extraneous spaces in help.'
 
   # lambda utilities
-  MSG = lambda{|msg,*keys| "#{msg}:  #{keys.join(' ')}"}
-  F2K = lambda{|f| f[1]=='-' ? f[2..((f.index('=')||0)-1)] : f[1]}
-  REDTTY = lambda{|msg,out=$stderr|
+  MSG = ->(msg,*keys){"#{msg}:  #{keys.join(' ')}"}
+  F2K = ->(f){f[1]=='-' ? f[2..((f.index('=')||0)-1)] : f[1]}
+  REDTTY = lambda do |msg,out=$stderr|
     out.tty? ? out.puts("\033[0;31m#{msg}\033[0m"): out.puts(msg)
-  }
+  end
 end

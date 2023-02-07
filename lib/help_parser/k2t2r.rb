@@ -3,14 +3,14 @@ module HelpParser
   def self.k2t(specs)
     k2t = NoDupHash.new
     # If specs section is not a RESERVED section, it's an options list.
-    tokens = specs.select{|k,v| k==USAGE or not RESERVED.include?(k)}
+    tokens = specs.select{|k,_| k==USAGE or !RESERVED.include?(k)}
       # Tokens associating a key to a type.
       .values.flatten.select{|v|v.include?('=')}
     tokens.each do |token|
-      if match = VARIABLE.match(token) || LONG.match(token)
+      if (match = VARIABLE.match(token) || LONG.match(token))
         name, type = match[:k], match[:t]
-        if _=k2t[name]
-          raise HelpError, MSG[INCONSISTENT,name,type,_]  unless type==_
+        if (_=k2t[name])
+          raise HelpError, MSG[INCONSISTENT,name,type,_] unless type==_
         else
           k2t[name] = type
         end
@@ -19,12 +19,12 @@ module HelpParser
         raise SoftwareError, MSG[UNEXPECTED,token]
       end
     end
-    return k2t
+    k2t
   end
 
   # t2r is an acronym for "type to regexp"
   def self.t2r(specs)
-    if types = specs[TYPES]
+    if (types=specs[TYPES])
       t2r = NoDupHash.new
       types.each do |pair|
         type, pattern = *pair
@@ -36,6 +36,6 @@ module HelpParser
       end
       return t2r
     end
-    return nil
+    nil
   end
 end

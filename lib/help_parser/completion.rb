@@ -3,26 +3,24 @@ module HelpParser
     def initialize(hash, specs)
       @hash,@specs = hash,specs
       @cache = NoDupHash.new
-      usage or diagnose  if @specs.has_key?(USAGE)
+      usage or diagnose if @specs.key?(USAGE)
       pad
-      types  if @specs.has_key?(TYPES)
+      types if @specs.key?(TYPES)
     end
 
     # Which usage does the user's command options match?
     def usage
       @specs[USAGE].each do |cmd|
-        begin
-          i = matches(cmd)
-          raise NoMatch unless @hash.size==i
-          @cache.each{|k,v|@hash[k]=v} # Variables
-          return true # Good! Found matching usage.
-        rescue NoMatch
-          next
-        ensure
-          @cache.clear
-        end
+        i = matches(cmd)
+        raise NoMatch unless @hash.size==i
+        @cache.each{|k,v|@hash[k]=v} # Variables
+        return true # Good! Found matching usage.
+      rescue NoMatch
+        next
+      ensure
+        @cache.clear
       end
-      return false # Bad! Did not match any of the expected usage.
+      false # Bad! Did not match any of the expected usage.
     end
 
     # Diagnose user's usage.
@@ -37,7 +35,7 @@ module HelpParser
           end
         end
       end
-      typos = @hash.keys.select{|k|k.is_a? String and not dict[k]}
+      typos = @hash.keys.select{_1.is_a?(String) && !dict[_1]}
       raise UsageError, MSG[UNRECOGNIZED, typos] unless typos.empty?
 
       raise UsageError, MATCH_USAGE
@@ -46,24 +44,22 @@ module HelpParser
     def types
       t2r,k2t = HelpParser.t2r(@specs),HelpParser.k2t(@specs)
       @hash.each do |key,value|
-        next unless key.is_a?(String)
-        if type = k2t[key]
-          regex = t2r[type]
-          case value
-          when String
-            unless value=~regex
-              raise UsageError, "--#{key}=#{value} !~ #{type}=#{regex.inspect}"
-            end
-          when Array
-            value.each do |string|
-              unless string=~regex
-                raise UsageError,
-                  "--#{key}=#{string} !~ #{type}=#{regex.inspect}"
-              end
-            end
-          else
-            raise UsageError, "--#{key} !~ #{type}=#{regex.inspect}"
+        next unless key.is_a?(String) && (type=k2t[key])
+        regex = t2r[type]
+        case value
+        when String
+          unless value=~regex
+            raise UsageError, "--#{key}=#{value} !~ #{type}=#{regex.inspect}"
           end
+        when Array
+          value.each do |string|
+            unless string=~regex
+              raise UsageError,
+                "--#{key}=#{string} !~ #{type}=#{regex.inspect}"
+            end
+          end
+        else
+          raise UsageError, "--#{key} !~ #{type}=#{regex.inspect}"
         end
       end
     end
@@ -79,12 +75,12 @@ module HelpParser
             if second[0]=='-'
               i = second.index('=') || 0
               short,long = first[1],second[2..(i-1)]
-              if @hash.has_key?(short)
-                if @hash.has_key?(long)
+              if @hash.key?(short)
+                if @hash.key?(long)
                   raise UsageError, MSG[REDUNDANT, short, long]
                 end
-                @hash[long] = (default.nil?) ? true : default
-              elsif value = @hash[long]
+                @hash[long] = default.nil? ? true : default
+              elsif (value=@hash[long])
                 @hash[short] = true
                 if value==true && !default.nil?
                   @hash.delete(long) # ArgvHash reset
@@ -117,7 +113,7 @@ module HelpParser
             # OK, NEVERMIND!
           end
           next
-        elsif m=FLAG_GROUP.match(token)
+        elsif (m=FLAG_GROUP.match token)
           group,plus = m[:k],m[:p]
           key = keys[i]
           raise NoMatch unless key.is_a? String
@@ -126,11 +122,11 @@ module HelpParser
           unless plus.nil?
             loop do
               key = keys[i+1]
-              break unless key.is_a?(String) and list.include?(key)
+              break unless key.is_a?(String) && list.include?(key)
               i+=1
             end
           end
-        elsif m=VARIABLE.match(token)
+        elsif (m=VARIABLE.match(token))
           key = keys[i]
           raise NoMatch unless key.is_a?(Integer)
           variable,plus = m[:k],m[:p]
@@ -153,7 +149,7 @@ module HelpParser
         end
         i += 1
       end
-      return i
+      i
     end
   end
 end
