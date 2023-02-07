@@ -152,6 +152,7 @@ REDTTY
 REDUNDANT
 regex
 Regexp
+require
 require_relative
 RESERVED
 rindex

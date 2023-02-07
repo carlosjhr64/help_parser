@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+require 'help_parser'
+
+HelpParser[HelpParser::VERSION, <<~HELP]
+  ## HelpParser ##
+  Usage:
+    help_parser [:options+]
+  Options:
+    -h --help
+    -v --version
+HELP

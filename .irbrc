@@ -1,17 +1,12 @@
-require 'help_parser'
-include HelpParser
-
-# IRB Tools
+begin
+  project = File.basename __dir__
+  require project
+  klass = project.split('_').map{_1.capitalize}.join
+  version = eval "#{klass}::VERSION"
+  message = "### #{klass}:#{version} Ruby:#{RUBY_VERSION} ###"
+rescue Exception
+  message = $!.message
+end
 require 'irbtools/configure'
-_ = HelpParser::VERSION.split('.')[0..1].join('.')
-Irbtools.welcome_message = "### HelpParser(#{_}) ###"
-require 'irbtools'
-IRB.conf[:PROMPT][:HelpParser] = {
-  PROMPT_I:    '> ',
-  PROMPT_N:    '| ',
-  PROMPT_C:    '| ',
-  PROMPT_S:    '| ',
-  RETURN:      "=> %s \n",
-  AUTO_INDENT: true,
-}
-IRB.conf[:PROMPT_MODE] = :HelpParser
+Irbtools.welcome_message = message
+Irbtools.start
