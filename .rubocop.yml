@@ -12,6 +12,8 @@ Layout/EmptyLinesAroundAccessModifier:
   Enabled: false
 Layout/IndentationWidth:
   Enabled: false
+Layout/LeadingCommentSpace:
+  Enabled: false
 Layout/LineLength:
   Max: 80
 Layout/MultilineMethodDefinitionBraceLayout:
@@ -37,6 +39,8 @@ Layout/SpaceInsideBlockBraces:
 Lint/AmbiguousOperatorPrecedence:
   Enabled: false
 Lint/AmbiguousRegexpLiteral:
+  Enabled: false
+Lint/FloatComparison:
   Enabled: false
 Lint/MixedRegexpCaptureTypes:
   Enabled: false

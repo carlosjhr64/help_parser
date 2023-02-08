@@ -1,14 +1,14 @@
 #!/usr/bin/env ruby
-require_relative "../lib/help_parser"
+require_relative '../lib/help_parser'
 
-HELP = <<-HELP
-Usage:
-  cmd :options+ <pet> <more>+
-  cmd ints <many>+
-  cmd floats <much>+
-Options:
-  --age
-  --weight
+HELP = <<~HELP
+  Usage:
+    cmd :options+ <pet> <more>+
+    cmd ints <many>+
+    cmd floats <much>+
+  Options:
+    --age
+    --weight
 HELP
 
 HelpParser.string?(:pet)
@@ -29,10 +29,11 @@ HelpParser.floats?(:much)
 HelpParser.ints(:many)
 HelpParser.ints?(:many)
 
-OPTIONS = HelpParser[nil, HELP, ["cmd"]+ARGV]
+OPTIONS = HelpParser[nil, HELP, ['cmd']+ARGV]
 
 if OPTIONS.pet?
-  puts "Pet: #{OPTIONS.pet} Age: #{OPTIONS.age} Weight: #{OPTIONS.weight} More: #{OPTIONS.more.join(",")}"
+  print "Pet: #{OPTIONS.pet} Age: #{OPTIONS.age} Weight: #{OPTIONS.weight}"
+  puts " More: #{OPTIONS.more.join(',')}"
 elsif OPTIONS.many?
   puts "Many Total: #{OPTIONS.many.sum}"
 elsif OPTIONS.much?

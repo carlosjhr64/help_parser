@@ -4,6 +4,7 @@ a
 all
 any
 args
+ArgumentError
 argv
 ARGV
 ArgvHash
@@ -20,7 +21,6 @@ chars
 chomp
 clear
 cmd
-code
 Completion
 conditional
 CONDITIONAL
@@ -29,6 +29,7 @@ count
 CSV
 DBG
 default
+define_method
 delete
 detect
 diagnose
@@ -38,12 +39,12 @@ DUP_FLAG
 DUP_KEY
 DUP_WORD
 DUP_X
+e
 each
 each_line
 each_with_index
 empty
-eval
-exception
+except
 Exception
 exclusive
 EXCLUSIVE
@@ -68,7 +69,6 @@ floats
 group
 hash
 Hash
-has_key
 help
 HelpError
 HelpException
@@ -78,6 +78,7 @@ HLP
 hsh
 i
 include
+include_all
 inclusive
 INCLUSIVE
 INCLUSIVE_KEYS
@@ -86,6 +87,7 @@ index
 _init
 initialize
 inspect
+instance_eval
 int
 Integer
 ints
@@ -119,15 +121,16 @@ MISSING_CASES
 MISSING_USAGE
 msg
 MSG
-mthd
 n
 name
 names
+negative
 new
 nil
 NoDupHash
 NoMatch
 NO_MATCH
+none
 NOT_FLOAT
 NOT_FLOATS
 NOT_INTEGER
@@ -145,6 +148,7 @@ parseh
 parseu
 pattern
 plus
+positive
 push
 puts
 raise
@@ -152,9 +156,11 @@ REDTTY
 REDUNDANT
 regex
 Regexp
+reject
 require
 require_relative
 RESERVED
+respond_to_missing
 rindex
 Ruby32
 s
@@ -182,7 +188,9 @@ strings
 strip
 t
 t2r
+to_f
 to_h
+to_i
 token
 tokens
 to_s
@@ -226,3 +234,4 @@ words
 x
 X_DEF
 xs
+zero

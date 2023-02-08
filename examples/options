@@ -1,15 +1,15 @@
 #!/usr/bin/env ruby
-require "json"
-require_relative "../lib/help_parser"
+require 'json'
+require_relative '../lib/help_parser'
 
-HELP = <<-HELP
-Options:
-  -s           \t short
-  --long       \t long
-  -q --quiet   \t synonym
-  --default ok \t default
-  -w --wut WUT \t short default
-  -n --one -1  \t unambiguous -default
+HELP = <<~HELP
+  Options:
+    -s           \t short
+    --long       \t long
+    -q --quiet   \t synonym
+    --default ok \t default
+    -w --wut WUT \t short default
+    -n --one -1  \t unambiguous -default
 HELP
 
 OPTIONS = HelpParser[nil, HELP]

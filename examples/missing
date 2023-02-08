@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
-require "json"
-require_relative "../lib/help_parser"
+require 'json'
+require_relative '../lib/help_parser'
 
 OPTIONS = HelpParser[]
 puts "--abc:#{OPTIONS.abc} abc?:#{OPTIONS.abc?}"

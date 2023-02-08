@@ -1,12 +1,12 @@
 #!/usr/bin/env ruby
-require "json"
-require_relative "../lib/help_parser"
+require 'json'
+require_relative '../lib/help_parser'
 
-HELP = <<-HELP
-Usage:
-  usage a: <a>
-  usage b: <b>
-  usage c: <c>
+HELP = <<~HELP
+  Usage:
+    usage a: <a>
+    usage b: <b>
+    usage c: <c>
 HELP
 
 OPTIONS = HelpParser[nil, HELP]

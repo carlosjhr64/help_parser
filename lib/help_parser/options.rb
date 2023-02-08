@@ -47,17 +47,16 @@ module HelpParser
       @hash[k]
     end
 
-    def method_missing(mthd, *args, &block)
-      super if block || !args.empty?
-      m = mthd.to_s
-      case m[-1]
-      when '?'
-        @hash.key? m[0..-2]
-      when '!'
-        super
-      else
-        @hash[m]
+    def respond_to_missing?(m, include_all=false)
+      m[-1]=='!' ? super : true
+    end
+
+    def method_missing(m, *args, &block)
+      super unless respond_to_missing?(m)
+      unless args.empty? && block.nil?
+        raise ArgumentError, 'expected neither args nor block'
       end
+      m[-1]=='?' ? @hash.key?(m[0..-2].to_s) : @hash[m.to_s]
     end
   end
 end

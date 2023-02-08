@@ -1,54 +1,54 @@
 #!/usr/bin/env ruby
-require "help_parser"
+require 'help_parser'
 
-HELP = <<-HELP
-# <= Hash here, parser skips
-# HelpParser: Party command example #
-Usage:
-  party :options+ [<args>+]
-  party [:alternate] <arg=FLOAT>
-  party literal <arg1=WORD> <arg2=WORD>
-Options:
-  -v --version       \t Give version and quit
-  -h --help          \t Give help and quit
-  -s --long          \t Short long synonyms
-  --touch that       \t Defaulted
-  --date=DATE        \t Typed
-  --age=INTEGER 80   \t Typed and Defaulted
-  -a --all=YN y      \t Short, long, typed, and defaulted
-  --to_be
-  --not_to_be
-  --rain
-  --water
-  --wet
-Exclusive:
-  to_be not_to_be    \t Tells parser these are mutually exclusive keys
-Inclusive:
-  date age           \t Tells parser any of these must include all of these
-Conditional:
-  rain water wet     \t Tells parser if first then all
-Alternate:
-  --invoke
-  --wut
-Types:
-  WORD    /^[A-Za-z]+$/
-  DATE    /^\\d\\d\\d\\d-\\d\\d-\\d\\d$/
-  INTEGER /^\\d+$/
-  FLOAT   /^\\d+\\.\\d+$/
-  YN      /^[YNyn]$/
-# <= Hash here, parser breaks out
-# Notes #
-I wouldn't touch that!
+HELP = <<~HELP
+  # <= Hash here, parser skips
+  # HelpParser: Party command example #
+  Usage:
+    party :options+ [<args>+]
+    party [:alternate] <arg=FLOAT>
+    party literal <arg1=WORD> <arg2=WORD>
+  Options:
+    -v --version       \t Give version and quit
+    -h --help          \t Give help and quit
+    -s --long          \t Short long synonyms
+    --touch that       \t Defaulted
+    --date=DATE        \t Typed
+    --age=INTEGER 80   \t Typed and Defaulted
+    -a --all=YN y      \t Short, long, typed, and defaulted
+    --to_be
+    --not_to_be
+    --rain
+    --water
+    --wet
+  Exclusive:
+    to_be not_to_be    \t Tells parser these are mutually exclusive keys
+  Inclusive:
+    date age           \t Tells parser any of these must include all of these
+  Conditional:
+    rain water wet     \t Tells parser if first then all
+  Alternate:
+    --invoke
+    --wut
+  Types:
+    WORD    /^[A-Za-z]+$/
+    DATE    /^\\d\\d\\d\\d-\\d\\d-\\d\\d$/
+    INTEGER /^\\d+$/
+    FLOAT   /^\\d+\\.\\d+$/
+    YN      /^[YNyn]$/
+  # <= Hash here, parser breaks out
+  # Notes #
+  I wouldn't touch that!
 HELP
 
-VERSION = "1.2.3"
+VERSION = '1.2.3'
 
 OPTIONS = HelpParser[VERSION, HELP] #~> HelpParser
 
 # Macros:
-HelpParser.strings?(:args)             # for OPTIONS.args      : Array(String) | Nil
-HelpParser.int?(:age)                  # for OPTIONS.age?      : Integer | Nil
-HelpParser.float(:arg)                 # for options.arg       : Float
+HelpParser.strings?(:args)             # for OPTIONS.args : Array(String)|Nil
+HelpParser.int?(:age)                  # for OPTIONS.age? : Integer|Nil
+HelpParser.float(:arg)                 # for options.arg  : Float
 HelpParser.string(:arg1, :arg2, :arg3) # for OPTIONS.arg1, etc : String
 #=> [:arg1, :arg2, :arg3]
 
@@ -76,7 +76,10 @@ def invoke_the_command
   OHNOOO
   puts Zlib::Inflate.inflate Base64.decode64 ohnooo
 end
-invoke_the_command if OPTIONS.args == ['touch', 'that'] or
-  OPTIONS.touch == 'that' or
-  (OPTIONS.invoke and OPTIONS.arg? and OPTIONS.arg==6.66) or
-  (OPTIONS.arg1 and OPTIONS.arg1=='touch' and OPTIONS.arg2=='that')
+invoke_the_command if OPTIONS.args==%w[touch that] ||
+                      OPTIONS.touch=='that' ||
+                      (OPTIONS.invoke &&
+                       OPTIONS.arg? && OPTIONS.arg==6.66) ||
+                      (OPTIONS.arg1 &&
+                       OPTIONS.arg1=='touch' &&
+                       OPTIONS.arg2=='that')
