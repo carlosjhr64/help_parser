@@ -4,9 +4,10 @@ module HelpParser
       @hash = HelpParser.parsea(argv)
       if version && VSN.any?{@hash.key? _1}
         # -v or --version
-        raise VersionException, version
+        raise VersionException, String(version)
       end
       if help
+        help = String(help)
         if HLP.any?{@hash.key? _1}
           HelpParser.parseh(help, validate: true) if HLP.all?{@hash.key? _1}
           raise HelpException, help
