@@ -1,0 +1,15 @@
+#!/usr/bin/env ruby
+require 'test/unit'
+require 'help_parser'
+
+class TestMissing < Test::Unit::TestCase
+  def test_missing
+    options = HelpParser::Options.new(nil,nil,['cmd'])
+    assert_equal 'cmd', options[0]
+    assert_nil options.anything
+    e = assert_raises(ArgumentError){options.anything(1)}
+    assert_equal 'expected neither args nor block', e.message
+    e = assert_raises(ArgumentError){options.anything{_1}}
+    assert_equal 'expected neither args nor block', e.message
+  end
+end
