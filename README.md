@@ -11,11 +11,9 @@ Do you have your help text?
 Let's parse!
 
 ## INSTALL:
-
 ```console
 $ gem install help_parser
 ```
-
 ## SYNOPSIS:
 <!-- The following PREVIEW has been approved for ALL PROGRAMMERS by CarlosJHR64.
 For the README validator that checks against me lying....
@@ -32,7 +30,6 @@ end
 The following gem has been rated
 | M | Mature |
 -->
-
 ```ruby
 require "help_parser"
 
@@ -96,9 +93,9 @@ OPTIONS.args?.class          #=> Array
 OPTIONS.arg? and OPTIONS.arg #=> false
 OPTIONS.arg?.class           #=> FalseClass
 ```
-
 ## Features
 
+* `ARGV` setup for `ARGF` when one of the "Types:" given is "ARGF"
 * `$DEBUG=true` on --debug
 * `$VERBOSE=true` on --verbose
 * -h and --help simultaneously will check help string for errors
