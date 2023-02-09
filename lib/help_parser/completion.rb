@@ -5,8 +5,20 @@ module HelpParser
       @cache = NoDupHash.new
       usage or diagnose if @specs.key?(USAGE)
       pad
-      types if @specs.key?(TYPES)
+      if @specs.key?(TYPES)
+        k2t = types
+        handle_argf(k2t) if k2t.detect{|_,v|v=='ARGF'}
+      end
     end
+
+    # Prepare ARGV for ARGF.
+    def handle_argf(k2t)
+      files = @hash.select{|k,v|k2t[k]=='ARGF'}.map{|k,v|v}.flatten
+      e = files.select{!File.exist?_1}.join(', ')
+      raise UsageError, MSG[NOT_EXIST, e] unless e.empty?
+      ARGV.replace files
+    end
+
 
     # Which usage does the user's command options match?
     def usage
@@ -62,6 +74,7 @@ module HelpParser
           raise UsageError, "--#{key} !~ #{type}=#{regex.inspect}"
         end
       end
+      k2t
     end
 
     def pad

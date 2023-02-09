@@ -1,0 +1,25 @@
+#!/usr/bin/env ruby
+require 'json'
+require_relative '../lib/help_parser'
+
+HELP = <<~HELP
+  # typed_argf #
+  # Like cat, but only accepts files with names that match the regex /^\\w+\\.md$/
+  Usage:
+    typed_argf [:options+] <file=ARGF>+
+    typed_argf [:wut] <Wut=ARGF> <WUT=ARGF>
+  Options:
+    -f --force
+    -q --quiet
+  Wut:
+    --wut
+  Types:
+    ARGF  /^\\w+\\.md$/
+HELP
+
+# The trick here is that the ARGF type
+# triggers the cleanup of ARGV.
+OPTIONS = HelpParser['1.2.3', HELP]
+while line = gets
+  puts line
+end

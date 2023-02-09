@@ -1,11 +1,11 @@
 Gem::Specification.new do |s|
   ## INFO ##
   s.name     = 'help_parser'
-  s.version  = '8.2.230208'
+  s.version  = '8.2.230209'
   s.homepage = 'https://github.com/carlosjhr64/help_parser'
   s.author   = 'CarlosJHR64'
   s.email    = 'carlosjhr64@gmail.com'
-  s.date     = '2023-02-08'
+  s.date     = '2023-02-09'
   s.licenses = ['MIT']
   ## DESCRIPTION ##
   s.summary  = <<~SUMMARY
@@ -21,7 +21,6 @@ Gem::Specification.new do |s|
   ## FILES ##
   s.require_paths = ['lib']
   s.files = %w[
-    LICENSE
     README.md
     lib/help_parser.rb
     lib/help_parser/aliases.rb

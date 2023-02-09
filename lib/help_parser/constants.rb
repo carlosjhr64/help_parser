@@ -73,6 +73,7 @@ module HelpParser
   NOT_FLOATS          = 'Not all Floats'
   NOT_INTEGER         = 'Not an Integer'
   NOT_INTEGERS        = 'Not all Integers'
+  NOT_EXIST           = 'Does not exist'
   # error messages, full:
   NO_MATCH            = 'Software Error: NoMatch was not caught by HelpParser.'
   MATCH_USAGE         = 'Please match usage.'
