@@ -50,6 +50,7 @@ exclusive
 EXCLUSIVE
 EXCLUSIVE_KEYS
 EX_CONFIG
+exist
 exit
 EX_SOFTWARE
 EXTRANEOUS_SPACES
@@ -57,6 +58,7 @@ EX_USAGE
 f
 F2K
 File
+files
 first
 flag
 FLAG
@@ -67,6 +69,7 @@ flatten
 float
 floats
 group
+handle_argf
 hash
 Hash
 help
@@ -131,6 +134,7 @@ NoDupHash
 NoMatch
 NO_MATCH
 none
+NOT_EXIST
 NOT_FLOAT
 NOT_FLOATS
 NOT_INTEGER
@@ -157,6 +161,7 @@ REDUNDANT
 regex
 Regexp
 reject
+replace
 require
 require_relative
 RESERVED

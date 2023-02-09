@@ -13,12 +13,11 @@ module HelpParser
 
     # Prepare ARGV for ARGF.
     def handle_argf(k2t)
-      files = @hash.select{|k,v|k2t[k]=='ARGF'}.map{|k,v|v}.flatten
-      e = files.select{!File.exist?_1}.join(', ')
+      files = @hash.select{|k,_|k2t[k]=='ARGF'}.map{|_,v|v}.flatten
+      e = files.reject{File.exist?_1}.join(', ')
       raise UsageError, MSG[NOT_EXIST, e] unless e.empty?
       ARGV.replace files
     end
-
 
     # Which usage does the user's command options match?
     def usage

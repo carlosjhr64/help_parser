@@ -20,6 +20,6 @@ HELP
 # The trick here is that the ARGF type
 # triggers the cleanup of ARGV.
 OPTIONS = HelpParser['1.2.3', HELP]
-while line = gets
+while (line=gets)
   puts line
 end
