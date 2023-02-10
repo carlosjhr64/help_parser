@@ -1,11 +1,11 @@
 Gem::Specification.new do |s|
   ## INFO ##
   s.name     = 'help_parser'
-  s.version  = '8.2.230209'
+  s.version  = '8.2.230210'
   s.homepage = 'https://github.com/carlosjhr64/help_parser'
   s.author   = 'CarlosJHR64'
   s.email    = 'carlosjhr64@gmail.com'
-  s.date     = '2023-02-09'
+  s.date     = '2023-02-10'
   s.licenses = ['MIT']
   ## DESCRIPTION ##
   s.summary  = <<~SUMMARY
