@@ -10,15 +10,15 @@ class TestRuboCop < Test::Unit::TestCase
     .select{/\.rb$/.match?_1 or (!/\.\w*$/.match?_1 and _bang_ruby?_1)}
     .each do |fn|
       threads.push(_rubocop fn)
-      process(threads,4){failed<<_1}
+      _process(threads,4){failed<<_1}
     end
-    process(threads,0){failed<<_1}
+    _process(threads,0){failed<<_1}
     return if failed.empty?
     failed.each{puts _1.red}
     flunk 'Busted by Rubocop!'.red
   end
   private
-  def process(threads, n)
+  def _process(threads, n)
     loop do
       while (thread=threads.find{!_1.alive?})
         threads.delete thread
