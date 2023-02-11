@@ -1,0 +1,24 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    ast (2.4.2)
+    colorize (0.8.1)
+    parser (3.2.1.0)
+      ast (~> 2.4.1)
+    power_assert (2.0.3)
+    test-unit (3.5.7)
+      power_assert
+
+PLATFORMS
+  aarch64-linux
+
+DEPENDENCIES
+  colorize
+  parser
+  test-unit
+
+RUBY VERSION
+   ruby 3.2.0p0
+
+BUNDLED WITH
+   2.4.6

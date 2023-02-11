@@ -40,6 +40,8 @@ Lint/AmbiguousOperatorPrecedence:
   Enabled: false
 Lint/AmbiguousRegexpLiteral:
   Enabled: false
+Lint/Debugger:
+  Enabled: false
 Lint/FloatComparison:
   Enabled: false
 Lint/MixedRegexpCaptureTypes:
