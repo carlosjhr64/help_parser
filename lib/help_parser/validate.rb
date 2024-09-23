@@ -44,11 +44,10 @@ module Validate
     group = []
     specs_usage = specs[USAGE]
     specs_usage&.flatten&.each do |token|
-      if (match=token.match FLAG_GROUP)
-        key = match[:k]
-        raise HelpError, MSG[UNDEFINED_SECTION,key] unless specs[key]
-        group.push(key)
-      end
+      next unless (match=token.match FLAG_GROUP)
+      key = match[:k]
+      raise HelpError, MSG[UNDEFINED_SECTION,key] unless specs[key]
+      group.push(key)
     end
     specs.each do |key,tokens|
       raise HelpError, MSG[MISSING_CASES,key] if tokens.empty?

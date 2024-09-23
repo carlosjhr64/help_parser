@@ -1,11 +1,11 @@
 Gem::Specification.new do |s|
   ## INFO ##
   s.name     = 'help_parser'
-  s.version  = '8.2.230210'
+  s.version  = '8.2.240923'
   s.homepage = 'https://github.com/carlosjhr64/help_parser'
   s.author   = 'CarlosJHR64'
   s.email    = 'carlosjhr64@gmail.com'
-  s.date     = '2023-02-10'
+  s.date     = '2024-09-23'
   s.licenses = ['MIT']
   ## DESCRIPTION ##
   s.summary  = <<~SUMMARY
@@ -37,8 +37,11 @@ Gem::Specification.new do |s|
   ]
   
   ## REQUIREMENTS ##
-  s.add_development_dependency 'colorize', '~> 0.8', '>= 0.8.1'
-  s.add_development_dependency 'parser', '~> 3.2', '>= 3.2.0'
-  s.add_development_dependency 'test-unit', '~> 3.5', '>= 3.5.7'
+  s.add_development_dependency 'colorize', '~> 1.1', '>= 1.1.0'
+  s.add_development_dependency 'cucumber', '~> 9.2', '>= 9.2.0'
+  s.add_development_dependency 'parser', '~> 3.3', '>= 3.3.5'
+  s.add_development_dependency 'rubocop', '~> 1.66', '>= 1.66.1'
+  s.add_development_dependency 'test-unit', '~> 3.6', '>= 3.6.2'
   s.requirements << 'git: 2.30'
+  s.requirements << 'ruby: 3.3'
 end
