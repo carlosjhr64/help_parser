@@ -40,6 +40,11 @@ Usage:
   party :options+ [<args>+]
   party [:alternate] <arg=FLOAT>
   party literal <arg1=WORD> <arg2=WORD>
+
+You can just write stuff as long as
+you don't start the line with a space or
+a "word:".
+
 Options:
   -v --version       \t Give version and quit
   -h --help          \t Give help and quit
