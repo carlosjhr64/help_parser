@@ -2,7 +2,7 @@
 Feature: Testing help_parser help
 
   Background:
-    * Given command "help_parser"
+    * Given command "./bin/help_parser"
 
   Scenario: --help
     * Given option "--help"

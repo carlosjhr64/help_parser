@@ -2,7 +2,7 @@
 Feature: Testing help_parser version
 
   Background:
-    * Given command "help_parser"
+    * Given command "./bin/help_parser"
 
   Scenario: --version
     * Given option "--version"

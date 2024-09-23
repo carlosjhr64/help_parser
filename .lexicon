@@ -167,7 +167,7 @@ require_relative
 RESERVED
 respond_to_missing
 rindex
-Ruby32
+Ruby33
 s
 scan
 second
