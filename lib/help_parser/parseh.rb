@@ -11,8 +11,11 @@ module HelpParser
         next if name==''
         break if line[0]=='#'
         next unless line[0]==' '
-        spec = (index=line.rindex("\t"))? line[0,index].strip : line.strip
-        raise HelpError, EXTRANEOUS_SPACES if validate && spec.empty?
+        spec,comment = line.split("\t", 2).map(&:strip)
+        if spec.empty?
+          raise HelpError, EXTRANEOUS_SPACES if validate && comment.to_s.empty?
+          next
+        end
         case name
         when USAGE
           Validate.balanced_brackets(spec.chars) if validate

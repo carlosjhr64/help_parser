@@ -59,6 +59,7 @@ Inclusive:
   date age           \t Tells parser any of these must include all of these
 Conditional:
   rain water wet     \t Tells parser if first then all
+                     \t Note how one can continue the comment as needed
 Alternate:
   --invoke
   --wut

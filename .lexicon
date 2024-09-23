@@ -21,6 +21,7 @@ chars
 chomp
 clear
 cmd
+comment
 Completion
 conditional
 CONDITIONAL
