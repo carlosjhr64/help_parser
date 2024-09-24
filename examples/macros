@@ -11,23 +11,10 @@ HELP = <<~HELP
     --weight
 HELP
 
-HelpParser.string?(:pet)
-HelpParser.string(:pet)
-
-HelpParser.float?(:weight)
 HelpParser.float(:weight)
-
-HelpParser.int?(:age)
-HelpParser.int(:age)
-
-HelpParser.strings(:more)
-HelpParser.strings?(:more)
-
-HelpParser.floats(:much)
-HelpParser.floats?(:much)
-
-HelpParser.ints(:many)
-HelpParser.ints?(:many)
+HelpParser.integer(:age)
+HelpParser.float(:much)
+HelpParser.integer(:many)
 
 OPTIONS = HelpParser[nil, HELP, ['cmd']+ARGV]
 

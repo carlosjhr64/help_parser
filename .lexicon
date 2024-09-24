@@ -69,7 +69,6 @@ FLAG_GROUP
 flags
 flatten
 float
-floats
 group
 handle_argf
 hash
@@ -93,9 +92,8 @@ _init
 initialize
 inspect
 instance_eval
-int
+integer
 Integer
-ints
 is_a
 join
 k
