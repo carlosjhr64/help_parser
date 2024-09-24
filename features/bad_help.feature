@@ -147,3 +147,11 @@ Feature: Testing examples/bad_help
     * Then exit status is "78"
     * Then stderr is "Duplicate exclusive/inclusive spec:  xyz xyz"
     * Then stdout is ""
+
+  # List vs value args
+  Scenario: 20
+    * Given option "20"
+    * When we run command
+    * Then exit status is "78"
+    * Then stderr is "Inconsistent use of variable:  arg"
+    * Then stdout is ""

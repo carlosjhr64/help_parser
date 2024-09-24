@@ -251,11 +251,18 @@ HELP19 = <<~HELP
     xyz xyz
 HELP
 
+# Lists(Array) vs Value arguments
+HELP20 = <<~HELP
+  Usage:
+    #{PN} value <arg>
+    #{PN} list <arg>+
+HELP
+
 HELPS = [
   HELP0, HELP1, HELP2, HELP3, HELP4, HELP5,
   HELP6, HELP7, HELP8, HELP9, HELP10,
   HELP11, HELP12, HELP13, HELP14, HELP15,
-  HELP16, HELP17, HELP18, HELP19
+  HELP16, HELP17, HELP18, HELP19, HELP20
 ]
 
 OPTIONS = HelpParser['1.2.3', HELPS[index], [PN, '--help', '-h']]

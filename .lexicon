@@ -16,6 +16,7 @@ BAD_REGEX
 balanced_brackets
 basename
 block
+bool
 c
 chars
 chomp
@@ -228,6 +229,7 @@ validate
 Validate
 value
 values
+var
 variable
 VARIABLE
 version

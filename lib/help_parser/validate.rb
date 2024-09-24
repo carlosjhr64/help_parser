@@ -41,13 +41,22 @@ module Validate
     flags.each_with_index do |flag,i|
       raise HelpError, MSG[DUP_FLAG,flag] unless i==flags.rindex(flag)
     end
-    group = []
+    group,var = [],{}
     specs_usage = specs[USAGE]
     specs_usage&.flatten&.each do |token|
-      next unless (match=token.match FLAG_GROUP)
-      key = match[:k]
-      raise HelpError, MSG[UNDEFINED_SECTION,key] unless specs[key]
-      group.push(key)
+      case token
+      when VARIABLE
+        key,bool = $~[:k],$~[:p].nil?
+        if var.key? key
+          raise HelpError, MSG[INCONSISTENT,key] unless var[key]==bool
+        else
+          var[key]=bool
+        end
+      when FLAG_GROUP
+        key = $~[:k]
+        raise HelpError, MSG[UNDEFINED_SECTION,key] unless specs[key]
+        group.push(key)
+      end
     end
     specs.each do |key,tokens|
       raise HelpError, MSG[MISSING_CASES,key] if tokens.empty?
