@@ -31,52 +31,52 @@ The following gem has been rated
 | M | Mature |
 -->
 ```ruby
-require "help_parser"
+require 'help_parser'
 
-HELP = <<-HELP
-# <= Hash here, parser skips
-# HelpParser: Party command example #
-Usage:
-  party :options+ [<args>+]
-  party [:alternate] <arg=FLOAT>
-  party literal <arg1=WORD> <arg2=WORD>
+HELP = <<~HELP
+  # <= Hash here, parser skips
+  # HelpParser: Party command example #
+  Usage:
+    party :options+ [<args>+]
+    party [:alternate] <arg=FLOAT>
+    party literal <arg1=WORD> <arg2=WORD>
 
-You can just write stuff as long as
-you don't start the line with a space or
-a "word:".
+  You can just write stuff as long as
+  you don't start the line with a space or
+  a "Keyword:".
 
-Options:
-  -v --version       \t Give version and quit
-  -h --help          \t Give help and quit
-  -s --long          \t Short long synonyms
-  --touch that       \t Defaulted
-  --date=DATE        \t Typed
-  --age=INTEGER 80   \t Typed and Defaulted
-  -a --all=YN y      \t Short, long, typed, and defaulted
-  --to_be
-  --not_to_be
-  --rain
-  --water
-  --wet
-Exclusive:
-  to_be not_to_be    \t Tells parser these are mutually exclusive keys
-Inclusive:
-  date age           \t Tells parser any of these must include all of these
-Conditional:
-  rain water wet     \t Tells parser if first then all
-                     \t Note how one can continue the comment as needed
-Alternate:
-  --invoke
-  --wut
-Types:
-  WORD    /^[A-Za-z]+$/
-  DATE    /^\\d\\d\\d\\d-\\d\\d-\\d\\d$/
-  INTEGER /^\\d+$/
-  FLOAT   /^\\d+\\.\\d+$/
-  YN      /^[YNyn]$/
-# <= Hash here, parser breaks out
-# Notes #
-I wouldn't touch that!
+  Options:
+    -v --version     \t Give version and quit
+    -h --help        \t Give help and quit
+    -s --long        \t Short long synonyms
+    --touch that     \t Defaulted
+    --date=DATE      \t Typed
+    --age=INTEGER 80 \t Typed and Defaulted
+    -a --all=YN y    \t Short, long, typed, and defaulted
+    --to_be
+    --not_to_be
+    --rain
+    --water
+    --wet
+  Exclusive:
+    to_be not_to_be  \t Tells parser these are mutually exclusive keys
+  Inclusive:
+    date age         \t Tells parser any of these must include all of these
+  Conditional:
+    rain water wet   \t Tells parser if first then all
+                       \t Note how one can continue the comment as needed
+  Alternate:
+    --invoke
+    --wut
+  Types:
+    WORD    /^[A-Za-z]+$/
+    DATE    /^\\d\\d\\d\\d-\\d\\d-\\d\\d$/
+    INTEGER /^\\d+$/
+    FLOAT   /^\\d+\\.\\d+$/
+    YN      /^[YNyn]$/
+  # <= Hash here, parser breaks out
+  # Notes #
+  I wouldn't touch that!
 HELP
 
 VERSION = "1.2.3"
@@ -84,19 +84,16 @@ VERSION = "1.2.3"
 OPTIONS = HelpParser[VERSION, HELP] #~> HelpParser
 
 # Macros:
-HelpParser.strings?(:args)             # for OPTIONS.args      : Array(String) | Nil
-HelpParser.int?(:age)                  # for OPTIONS.age?      : Integer | Nil
-HelpParser.float(:arg)                 # for options.arg       : Float
-HelpParser.string(:arg1, :arg2, :arg3) # for OPTIONS.arg1, etc : String
-#=> [:arg1, :arg2, :arg3]
+HelpParser.integer(:age) # for OPTIONS.age : Integer | Nil
+HelpParser.float(:arg)   # for options.arg : Float | Nil
 
 ## If run as:
 ##   party --age --date=2020-09-07 touch that
-OPTIONS.age?                 #=> 80
-OPTIONS.age?.class           #=> Integer
-OPTIONS.args?                #=> ["touch", "that"]
-OPTIONS.args?.class          #=> Array
-OPTIONS.arg? and OPTIONS.arg #=> false
+OPTIONS.age                  #=> 80
+OPTIONS.age.class            #=> Integer
+OPTIONS.args                 #=> ["touch", "that"]
+OPTIONS.args.class           #=> Array
+OPTIONS.arg.class            #=> NilClass
 OPTIONS.arg?.class           #=> FalseClass
 ```
 ## Features

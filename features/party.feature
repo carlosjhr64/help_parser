@@ -17,7 +17,7 @@ Feature: Testing examples/party
     * When we run command
     * Then exit status is "0"
     * Then stderr is ""
-    * Then digest is "246240247ba0100b3a0452a6418fba09"
+    * Then digest is "eefc90c3569ea374bb9d1c58930b8952"
 
   Scenario: --touch
     * Given option "--touch"
