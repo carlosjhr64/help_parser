@@ -86,6 +86,7 @@ OPTIONS = HelpParser[VERSION, HELP] #~> HelpParser
 # Macros:
 HelpParser.integer(:age) # for OPTIONS.age : Integer | Nil
 HelpParser.float(:arg)   # for options.arg : Float | Nil
+# If done on an Array option, it'll do a map(:to_f/:to_i).
 
 ## If run as:
 ##   party --age --date=2020-09-07 touch that
