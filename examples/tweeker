@@ -32,10 +32,9 @@ HELP
 VERSION = '6.5.0'
 
 # Macros:
-HelpParser.string(:name)  # for options.name   : String
-HelpParser.strings(:args) # for options.args   : Array(String)
-HelpParser.float(:value)  # for options.value  : Float
-HelpParser.int?(:number)  # for options.number : Int32 | Nil
+# Changed for version 9
+HelpParser.float(:value)     # for options.value  : Float
+HelpParser.integer(:number)  # for options.number : Int32 | Nil
 
 options = HelpParser[VERSION, HELP, ['tweeker']+ARGV]
 hash = options.to_h
@@ -44,4 +43,4 @@ pp hash # to inspect the hash
 pp options.name  if hash['name']
 pp options.args  if hash['args']
 pp options.value if hash['value']
-pp options.number?
+pp options.number
