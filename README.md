@@ -79,7 +79,7 @@ HELP = <<~HELP
   I wouldn't touch that!
 HELP
 
-VERSION = "1.2.3"
+VERSION = '1.2.3'
 
 OPTIONS = HelpParser[VERSION, HELP] #~> HelpParser
 
