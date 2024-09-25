@@ -18,6 +18,7 @@ basename
 block
 bool
 c
+call
 chars
 chomp
 clear
@@ -28,6 +29,7 @@ conditional
 CONDITIONAL
 CONDITIONAL_KEYS
 count
+csv
 CSV
 DBG
 default
@@ -119,6 +121,7 @@ matches
 MATCH_USAGE
 md
 message
+method
 method_missing
 MISSING_CASES
 MISSING_USAGE

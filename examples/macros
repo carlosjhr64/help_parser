@@ -3,28 +3,56 @@ require_relative '../lib/help_parser'
 
 HELP = <<~HELP
   Usage:
-    cmd :options+ <pet> <more>+
-    cmd ints <many>+
-    cmd floats <much>+
+    cmd names: <names=NAME>+
+    cmd integers: <integers=INTEGER>+
+    cmd floats: <floats=FLOAT>+
+    cmd rationals: <rationals=RATIONAL>+
+    cmd CSVs: <csvs=CSV>+
+    cmd CSVIs: <csvis=CSVI>+
+    cmd :options+
   Options:
-    --age
-    --weight
+    --name=NAME
+    --integer=INTEGER
+    --float=FLOAT
+    --rational=RATIONAL
+    --csv=CSV
+    --csvi=CSVI
+  Types:
+    NAME     /^[A-Z][a-z]+$/
+    INTEGER  /^\\d+$/
+    FLOAT    /^\\d+\\.\\d+$/
+    RATIONAL /^\\d+[/]\\d+$/
+    CSV      /^\\S+$/
+    CSVI     /^\\d+(,\\d+)*$/
 HELP
 
-HelpParser.float(:weight)
-HelpParser.integer(:age)
-HelpParser.float(:much)
-HelpParser.integer(:many)
+HelpParser.integer(:integer, :integers)
+HelpParser.float(:float, :floats)
+HelpParser.map(:rational, :rationals, map: :to_r)
+HelpParser.csv(:csv, :csvs)
+HelpParser.csv(:csvi, :csvis, map: :to_i)
 
 OPTIONS = HelpParser[nil, HELP, ['cmd']+ARGV]
 
-if OPTIONS.pet?
-  print "Pet: #{OPTIONS.pet} Age: #{OPTIONS.age} Weight: #{OPTIONS.weight}"
-  puts " More: #{OPTIONS.more.join(',')}"
-elsif OPTIONS.many?
-  puts "Many Total: #{OPTIONS.many.sum}"
-elsif OPTIONS.much?
-  puts "Much Total: #{OPTIONS.much.sum}"
+case OPTIONS[1]
+when 'names:'
+  pp OPTIONS.names
+when 'integers:'
+  pp OPTIONS.integers
+when 'floats:'
+  pp OPTIONS.floats
+when 'rationals:'
+  pp OPTIONS.rationals
+when 'CSVs:'
+  pp OPTIONS.csvs
+when 'CSVIs:'
+  pp OPTIONS.csvis
 else
-  puts OPTIONS.to_h
+  _ = nil
+  pp _ unless (_=OPTIONS.name).nil?
+  pp _ unless (_=OPTIONS.integer).nil?
+  pp _ unless (_=OPTIONS.float).nil?
+  pp _ unless (_=OPTIONS.rational).nil?
+  pp _ unless (_=OPTIONS.csv).nil?
+  pp _ unless (_=OPTIONS.csvi).nil?
 end
