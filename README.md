@@ -1,4 +1,4 @@
-# Help Parser VIII: Helpland
+# Help Parser IX: Revelations
 
 * [VERSION 9.0.240925](https://github.com/carlosjhr64/help_parser/releases)
 * [github](https://www.github.com/carlosjhr64/help_parser)
@@ -6,9 +6,7 @@
 
 ## DESCRIPTION:
 
-Welcome to Help Parser!  
-Do you have your help text?  
-Let's parse!
+Options parsing based on your help text.
 
 ## INSTALL:
 ```console
@@ -18,91 +16,103 @@ $ gem install help_parser
 <!-- The following PREVIEW has been approved for ALL PROGRAMMERS by CarlosJHR64.
 For the README validator that checks against me lying....
 ```ruby
-unless File.basename($PROGRAM_NAME) == 'party'
+unless File.basename($PROGRAM_NAME) == 'revelations'
   # For example's sake say
-  $PROGRAM_NAME = 'party'
+  $PROGRAM_NAME = 'revelations'
   # and ARGV is
-  ARGV.concat ["-\-age", "-\-date=2020-09-07", 'touch', 'that']
-  # and proceed as if run as:
-  #     awesome -\-name=Doe -\-value  a b c
+  ARGV.concat ['1,2,3','4,5,6']
+  # and proceed as if run as: `revelations 1,2,3 4,5,6`
 end
 ```
 The following gem has been rated
-| M | Mature |
--->
+| M | Mature | -->
 ```ruby
+#!/usr/bin/env ruby
 require 'help_parser'
 
-HELP = <<~HELP
-  # <= Hash here, parser skips
-  # HelpParser: Party command example #
-  Usage:
-    party :options+ [<args>+]
-    party [:alternate] <arg=FLOAT>
-    party literal <arg1=WORD> <arg2=WORD>
+VERSION = '1.2.3'
+OPTIONS = HelpParser[VERSION, <<-HELP]
+# <= Hash here, parser skips
+# HelpParser command example #
 
-  You can just write stuff as long as
-  you don't start the line with a space or
-  a "Keyword:".
+One can write any notes on the help text as long as
+it does not start with a space or a "Keyword:".
 
-  Options:
-    -v --version     \t Give version and quit
-    -h --help        \t Give help and quit
-    -s --long        \t Short long synonyms
-    --touch that     \t Defaulted
-    --date=DATE      \t Typed
-    --age=INTEGER 80 \t Typed and Defaulted
-    -a --all=YN y    \t Short, long, typed, and defaulted
-    --to_be
-    --not_to_be
-    --rain
-    --water
-    --wet
-  Exclusive:
-    to_be not_to_be  \t Tells parser these are mutually exclusive keys
-  Inclusive:
-    date age         \t Tells parser any of these must include all of these
-  Conditional:
-    rain water wet   \t Tells parser if first then all
-                       \t Note how one can continue the comment as needed
-  Alternate:
-    --invoke
-    --wut
-  Types:
-    WORD    /^[A-Za-z]+$/
-    DATE    /^\\d\\d\\d\\d-\\d\\d-\\d\\d$/
-    INTEGER /^\\d+$/
-    FLOAT   /^\\d+\\.\\d+$/
-    YN      /^[YNyn]$/
-  # <= Hash here, parser breaks out
-  # Notes #
-  I wouldn't touch that!
+Usage:
+  revelations :options+ [<arg>]
+  revelations :alternate <args=FLOAT>+
+  revelations literal <arg1=WORD> <arg2=WORD>
+  revelations <numbers=CSVI>+
+
+The ":keyword" refers to a flag in defined in the "Keyword:" section.
+A "[...]" is an optional part of the usage.
+A "+" means one or more of it is allowed.
+
+Options:
+  -v --version \t Give version and quit
+  -h --help    \t Give help and quit
+  --verbose    \t Set $VERBOSE true
+  --debug      \t Set $DEBUG true
+
+The above(version, help, verbose, debug) are built-in options.
+The tab, "\t", splits the comment from the flags.
+On its own a flag is set to true, else it's nil.
+But you can also set a long flag value to a string as allowed by its type.
+
+  -a --all=YN y    \t Short, long, typed, and defaulted
+
+OPTIONS.all at first is nil. If set without a value, it's set to "y"
+One can set it to to either "n" of "y" as allowed by YN(see below under Types:).
+
+  --stop=NUMBER    \t Typed
+  --start=NUMBER 0 \t Typed and defaulted
+
+  --rain
+  --water
+  --wet
+
+  --to_be
+  --not_to_be
+
+Exclusive:
+  to_be not_to_be \t Tells parser these are mutually exclusive keys
+Inclusive:
+  start stop      \t Tells parser any of these must include all of these
+Conditional:
+  rain water wet  \t Tells parser if first then all
+                  \t Note how one can continue the comment as needed
+
+Alternate:
+  --sum
+  --multiply
+
+Types:
+  WORD    /^[A-Za-z]+$/
+  NUMBER  /^\\d+$/
+  FLOAT   /^\\d+\\.\\d+$/
+  YN      /^[YNyn]$/
+  CSVI    /^\\d+(,\\d+)*$/
+# <= Hash here, parser breaks out
+And now one can freely write whatever....
 HELP
 
-VERSION = '1.2.3'
+# Tell HelpParser how to remap the string values:
+HelpParser.integer(:stop, :start) # HelpParser.map(:stop, :start, map: :to_i)
+HelpParser.float(:args)           # HelpParser.map(:args, map: :to_f)
+# Also available: HelpParser.rational(*name) = HelpParser.map(*names, map: to_r)
 
-OPTIONS = HelpParser[VERSION, HELP] #~> HelpParser
+# Tell HelpParser how to split the string values:
+HelpParser.split(:numbers, sep: ',', map: :to_i)
 
-# Macros:
-HelpParser.integer(:age) # for OPTIONS.age : Integer | Nil
-HelpParser.float(:arg)   # for options.arg : Float | Nil
-# If done on an Array option, it'll do a map(:to_f/:to_i).
-
-## If run as:
-##   party --age --date=2020-09-07 touch that
-OPTIONS.age                  #=> 80
-OPTIONS.age.class            #=> Integer
-OPTIONS.args                 #=> ["touch", "that"]
-OPTIONS.args.class           #=> Array
-OPTIONS.arg.class            #=> NilClass
-OPTIONS.arg?.class           #=> FalseClass
+# If one runs `revelations 1,2,3 4,5,6`, then:
+OPTIONS.numbers #=> [[1, 2, 3], [4, 5, 6]]
+# And everything else is unset:
+OPTIONS.stop #=> nil
 ```
 ## Features
 
-* `ARGV` setup for `ARGF` when one of the "Types:" given is "ARGF"
-* `$DEBUG=true` on --debug
-* `$VERBOSE=true` on --verbose
 * -h and --help simultaneously will check help string for errors
+* `ARGV` setup for `ARGF` when one of the "Types:" given is "ARGF"
 * `HelpParser::REDTTY[msg]` will red color output `msg` to `$stderr`.
 
 ## LICENSE:

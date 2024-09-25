@@ -29,8 +29,8 @@ HELP
 HelpParser.integer(:integer, :integers)
 HelpParser.float(:float, :floats)
 HelpParser.map(:rational, :rationals, map: :to_r)
-HelpParser.csv(:csv, :csvs)
-HelpParser.csv(:csvi, :csvis, map: :to_i)
+HelpParser.split(:csv, :csvs)
+HelpParser.split(:csvi, :csvis, map: :to_i)
 
 OPTIONS = HelpParser[nil, HELP, ['cmd']+ARGV]
 
