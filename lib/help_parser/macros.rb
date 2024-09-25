@@ -25,4 +25,5 @@ module HelpParser
       end
     end
   end
+  def self.csv(*names) = HelpParser.split(*names)
 end

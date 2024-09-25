@@ -74,6 +74,7 @@ HelpParser.float(:args)           # HelpParser.map(:args, map: :to_f)
 
 # Tell HelpParser how to split the string values:
 HelpParser.split(:numbers, sep: ',', map: :to_i)
+# Also available: HelpParser.csv(*name) = HelpParser.split(*names)
 
 # If one runs `revelations 1,2,3 4,5,6`, then:
 OPTIONS.numbers #=> [[1, 2, 3], [4, 5, 6]]
