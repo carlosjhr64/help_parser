@@ -1,22 +1,18 @@
 Gem::Specification.new do |s|
   ## INFO ##
   s.name     = 'help_parser'
-  s.version  = '9.0.240925'
+  s.version  = '9.0.240926'
   s.homepage = 'https://github.com/carlosjhr64/help_parser'
   s.author   = 'CarlosJHR64'
   s.email    = 'carlosjhr64@gmail.com'
-  s.date     = '2024-09-25'
+  s.date     = '2024-09-26'
   s.licenses = ['MIT']
   ## DESCRIPTION ##
   s.summary  = <<~SUMMARY
-    Welcome to Help Parser!  
-    Do you have your help text?  
-    Let's parse!
+    Options parsing based on your help text.
   SUMMARY
   s.description = <<~DESCRIPTION
-    Welcome to Help Parser!  
-    Do you have your help text?  
-    Let's parse!
+    Options parsing based on your help text.
   DESCRIPTION
   ## FILES ##
   s.require_paths = ['lib']

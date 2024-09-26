@@ -48,7 +48,9 @@ module Validate
       when VARIABLE
         key,bool = $~[:k],$~[:p].nil?
         if var.key? key
-          raise HelpError, MSG[INCONSISTENT,key] unless var[key]==bool
+          unless var[key]==bool
+            raise HelpError, MSG[INCONSISTENT,"<#{key}>","<#{key}>+"]
+          end
         else
           var[key]=bool
         end

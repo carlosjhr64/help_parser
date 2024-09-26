@@ -1,6 +1,6 @@
 # Help Parser IX: Revelations
 
-* [VERSION 9.0.240925](https://github.com/carlosjhr64/help_parser/releases)
+* [VERSION 9.0.240926](https://github.com/carlosjhr64/help_parser/releases)
 * [github](https://www.github.com/carlosjhr64/help_parser)
 * [rubygems](https://rubygems.org/gems/help_parser)
 
