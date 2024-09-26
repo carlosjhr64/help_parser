@@ -14,7 +14,7 @@ module HelpParser
   def self.float(*names)    = HelpParser.map(*names, map: :to_f)
   def self.rational(*names) = HelpParser.map(*names, map: :to_r)
 
-  def self.split(*names, sep: ',', map: :strip)
+  def self.split(*names, sep:, map:)
     names.each do |name|
       Options.instance_eval do
         define_method(name) do
@@ -25,5 +25,5 @@ module HelpParser
       end
     end
   end
-  def self.csv(*names) = HelpParser.split(*names)
+  def self.csv(*names) = HelpParser.split(*names, sep: ',', map: :strip)
 end
